@@ -12,6 +12,8 @@ var albumsRouter = require('./routes/api/albums')
 var playlistsRouter = require('./routes/api/playlists')
 var tracksRouter = require('./routes/api/tracks')
 require('./models/User');
+require('./config/passport'); // <-- ADD THIS LINE
+const passport = require('passport'); // <-- ADD THIS LINE
 var usersRouter = require('./routes/api/users');
 
 
@@ -22,7 +24,7 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-
+app.use(passport.initialize());
 // ADD THIS SECURITY MIDDLEWARE
 // Security Middleware
 if (!isProduction) {
