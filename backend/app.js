@@ -11,6 +11,7 @@ const csrfRouter = require('./routes/api/csrf');
 var albumsRouter = require('./routes/api/albums')
 var playlistsRouter = require('./routes/api/playlists')
 var tracksRouter = require('./routes/api/tracks')
+require('./models/User');
 var usersRouter = require('./routes/api/users');
 
 
