@@ -1,14 +1,11 @@
-import {createStore, combineReducers, applyMiddleware, compose} from "redux"
-import thunk from "redux-thunk"
-import sessionReducer from "./session";
-import albumsReducer from "./album";
-
+// store/store.js
+import sessionReducer from './session';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
-    session: sessionReducer,
-    albums: albumsReducer
-})
-
+    session: sessionReducer
+});
 
 let enhancer;
 
@@ -25,4 +22,4 @@ const configureStore = (preloadedState) => {
   return createStore(rootReducer, preloadedState, enhancer);
 };
 
-export default configureStore
+export default configureStore;
