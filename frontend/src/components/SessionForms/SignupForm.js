@@ -1,9 +1,11 @@
 import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import './SessionForm.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './SignupForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
 
 function SignupForm () {
+  const history = useHistory()
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -49,15 +51,17 @@ function SignupForm () {
     };
 
     dispatch(signup(user)); 
+    history.push("/")
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
+    <form id="signup-form" onSubmit={handleSubmit}>
       <h2>Sign Up Form</h2>
       <div className="errors">{errors?.email}</div>
       <label>
         <span>Email</span>
         <input type="text"
+          className="session-form"
           value={email}
           onChange={update('email')}
           placeholder="Email"
@@ -67,6 +71,7 @@ function SignupForm () {
       <label>
         <span>Username</span>
         <input type="text"
+          className="session-form"
           value={username}
           onChange={update('username')}
           placeholder="Username"
@@ -76,6 +81,7 @@ function SignupForm () {
       <label>
         <span>Password</span>
         <input type="password"
+          className="session-form"
           value={password}
           onChange={update('password')}
           placeholder="Password"
@@ -87,6 +93,7 @@ function SignupForm () {
       <label>
         <span>Confirm Password</span>
         <input type="password"
+          className="session-form"
           value={password2}
           onChange={update('password2')}
           placeholder="Confirm Password"

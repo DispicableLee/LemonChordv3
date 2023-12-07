@@ -1,0 +1,29 @@
+#nav-main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    /* border: 1px solid white; */
+    height: 5vh;
+}
+
+#nav-main button{
+    height: 40%;
+}
+
+#nav-main h1{
+    align-items: center;
+}
+
+
+
+#nav-auth{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    gap: 20px;
+    /* border: 1px solid white; */
+}

@@ -2,11 +2,13 @@
 
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-// import './SessionForm.css';
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import './LoginForm.css';
 
 import { login, clearSessionErrors } from '../../store/session';
 
 function LoginForm () {
+  const history = useHistory()
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const errors = useSelector(state => state.errors.session);
@@ -26,33 +28,34 @@ function LoginForm () {
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(login({ email, password })); 
+    history.push("/main")
   }
 
   return (
-    <form className="session-form" onSubmit={handleSubmit}>
-      <h2>Log In Form</h2>
+    <form id="login" onSubmit={handleSubmit}>
+      <h2 className='subtitle-header'>Log In</h2>
       <div className="errors">{errors?.email}</div>
-      <label>
-        <span>Email</span>
         <input type="text"
           value={email}
           onChange={update('email')}
           placeholder="Email"
+          className='session-form'
         />
-      </label>
       <div className="errors">{errors?.password}</div>
-      <label>
-        <span>Password</span>
         <input type="password"
           value={password}
           onChange={update('password')}
           placeholder="Password"
+          className='session-form'
         />
-      </label>
       <input
         type="submit"
         value="Log In"
         disabled={!email || !password}
+        className='session-submit'
+        style={{
+          // height: "40px"
+        }}
       />
     </form>
   );

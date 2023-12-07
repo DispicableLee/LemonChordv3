@@ -5,6 +5,13 @@ const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
 
+const RECIEVE_LIGHT_DARK = "session/RECIEVE_LIGHT_DARK";
+
+export const recieveLightDark = isLight => ({
+  type: RECIEVE_LIGHT_DARK,
+  payload: isLight,
+})
+
 // Dispatch receiveCurrentUser when a user logs in.
 const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
@@ -26,6 +33,9 @@ const logoutUser = () => ({
 export const clearSessionErrors = () => ({
   type: CLEAR_SESSION_ERRORS
 });
+
+
+
 
 
 export const getCurrentUser = () => async dispatch => {
@@ -89,9 +99,11 @@ const initialState = {
 const sessionReducer = (state = initialState, action) => {
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
-      return { user: action.currentUser };
+      return {...state, user: action.currentUser };
     case RECEIVE_USER_LOGOUT:
       return initialState;
+    case RECIEVE_LIGHT_DARK:
+      return {...state, isLight: action.payload}
     default:
       return state;
   }

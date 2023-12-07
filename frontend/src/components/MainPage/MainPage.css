@@ -1,0 +1,17 @@
+#main-page-main{
+
+}
+
+#left-bar{
+    border-right: 1px solid white;
+    width: 10%;
+    height: 70vh;
+    display: flex;
+    margin-top: 1%;
+    padding: 1vh 2.5vh 2.5vh 2.5vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+    /* justify-content: flex-start; */
+
+}

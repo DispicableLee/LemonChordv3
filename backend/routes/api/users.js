@@ -43,10 +43,18 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
     return next(err);
   }
 
+
+
+
+  const likedTracks = []
+
   // Otherwise create a new user
   const newUser = new User({
     username: req.body.username,
-    email: req.body.email
+    email: req.body.email,
+    tracks: [],
+    albums: [],
+    playlists: [likedTracks]
   });
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -90,7 +98,10 @@ router.get('/current', restoreUser, (req, res) => {
   res.json({
     _id: req.user._id,
     username: req.user.username,
-    email: req.user.email
+    email: req.user.email,
+    albums: req.user.albums,
+    tracks: req.user.tracks,
+    playlists: req.user.playlists
   });
 });
 

@@ -1,38 +1,74 @@
-.App {
-  text-align: center;
+@font-face {
+  font-family: 'Smooch';
+  src: url('../src/components/style/Fonts/Smooch-Regular.ttf');
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: 'Quicksand Regular';
+  src: url('../src/components/style/Fonts/Quicksand-Regular.ttf');
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: 'Quicksand Medium';
+  src: url('../src/components/style/Fonts/Quicksand-Medium.ttf');
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+#app{
+  height: 100vh;
+  background: linear-gradient(180deg, #1BA2B1 9.38%, #7FC2CA 47.4%, #EEAF61 72.92%, #FB9062 86.46%, #EE5D6C 100%);
+  transition: transform 0.5s ease
 }
 
-.App-link {
-  color: #61dafb;
+#app.dark-mode{ 
+  /* animation: slideOut 0.5s ease forwards; */
+  background: linear-gradient(180deg, #6A0D83 0%, #80287D 20%, #954178 40%, #AB5D72 60%, #C47B6C 80%, #EEAF61 100%);
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.title-header{
+  color: #D86F49;
+  font-size: 48px;
+  font-family: 'Smooch';
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  letter-spacing: 1px;
+  /* word-spacing: 1em */
+
+}
+
+.subtitle-header{
+  font-family: "Quicksand Medium";
+  color: #e2e2e2;
+}
+
+
+.session-form{
+    font-family: 'Quicksand Regular';
+    font-size: 24px;
+    color: #e2e2e2;
+    height: 40%;
+    width: 50%;
+    padding: 0px 0px 5px 15px;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #e2e2e2;
+    border-radius: 30px;
+}
+
+.session-form::placeholder{
+  color: #e2e2e2;
+}
+
+.session-form:focus{
+  outline: none;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+}
+
+
+.session-submit{
+  width: 30%;
+  height: 40%;
+  background-color: transparent;
+  background: none;
+  outline: none;
+
+  /* border-bottom: 1px solid #e2e2e2; */
 }
