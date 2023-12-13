@@ -1,11 +1,13 @@
 // store/store.js
 import sessionReducer from './session';
+import tracksReducer from './tracks';
 import errors from './errors'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
+    tracks: tracksReducer,
     errors
 });
 
