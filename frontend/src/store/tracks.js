@@ -72,7 +72,7 @@ export const eventErrorsReducer = (state = nullErrors, action) => {
 };
 
 
-const tracksReducer = (state={}, action) =>{
+const tracksReducer = (state=[], action) =>{
     switch(action.type){
         case RECEIVE_TRACKS:
             return [...action.tracks]

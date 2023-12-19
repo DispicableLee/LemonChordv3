@@ -8,7 +8,7 @@
 #splashform-main{
     /* border: 1px solid white; */
     width: 75%;
-    height: 50%;
+    height: 70%;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -20,7 +20,7 @@
     align-items: center;
 }
 
-#signup-activate{
+#signup-activate {
     font-family: "Smooch";
     background-color: transparent;
     /* border: 1px solid #e2e2e2; */
@@ -31,7 +31,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    transition: background 0.2s ease; /* Use the same property name as in hover style */
 }
+
+
 #signup-activate h2{
     font-size: 30px;
     letter-spacing: 2px;
@@ -45,10 +48,12 @@
 
 
 
-#signup-activate:hover{
+
+#signup-activate:hover {
     border-bottom: 1px solid var(--LemonChordLightAccent, #E2E2E2);
     background: linear-gradient(180deg, #1BA2B1 0%, rgba(251, 216, 127, 0.75) 99.99%, rgba(226, 226, 226, 0.00) 100%);
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    cursor: pointer
 }
 
 #signup-activate:hover h2{
@@ -57,4 +62,10 @@
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 
+}
+
+#signup-activate:focus {
+    border-bottom: 1px solid var(--LemonChordLightAccent, #E2E2E2);
+    background: linear-gradient(180deg, #1BA2B1 0%, rgba(251, 216, 127, 0.75) 99.99%, rgba(226, 226, 226, 0.00) 100%);
+    box-shadow: none
 }

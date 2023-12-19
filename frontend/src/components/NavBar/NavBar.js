@@ -23,15 +23,8 @@ export default function NavBar () {
   function handleLighting(e){
     e.preventDefault()
     setLightDark(!lightDark)
-    console.log(lightDark)
     dispatch(recieveLightDark(lightDark))
   }
-
-
-
-
-
-
 
   const logoutUser = e => {
       e.preventDefault();
@@ -68,7 +61,7 @@ export default function NavBar () {
               height="70" 
               onMouseOver={()=>setHovered(true)}
               onMouseLeave={()=>setHovered(false)}
-              onClick={(e)=>handleLighting(e)}
+              onClick={handleLighting}
               style={{
                 transition: 'color 0.3s ease'
               }}

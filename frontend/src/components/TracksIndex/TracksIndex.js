@@ -3,24 +3,24 @@ import SearchBar from "../SearchBar.js/SearchBar";
 import { useState, useEffect } from "react";
 import { fetchTracks } from "../../store/tracks";
 import { useDispatch, useSelector } from "react-redux";
+import SingleTrack from "../SingleTrack/SingleTrack";
 import './TracksIndex.css'
 
 export default function TracksIndex(){
     const dispatch = useDispatch()
-    const [tracks, setTracks] = useState(useSelector(store=>store.tracks))
-    console.log(tracks)
+    // const [tracks, setTracks] = useState(fetchedTracks || [])
     useEffect(()=>{
         dispatch(fetchTracks())
     },[dispatch])
-
-    const renderedTracks = tracks.map((track)=>{
+    const fetchedTracks = useSelector(store=>store?.tracks)
+    console.log(fetchedTracks)
+    const renderedTracks = fetchedTracks?.map((track)=>{
         return (
-            <div style={{
-                border: "1px solid white",
-                height: "5vh"
-            }}>
-                <h2>{track.title}</h2>
-            </div>
+            <SingleTrack 
+                key={track._id} 
+                title={track.title}
+                
+            />
         )
     })
 

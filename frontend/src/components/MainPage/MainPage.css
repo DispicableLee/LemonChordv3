@@ -18,6 +18,20 @@
 
 }
 
+#left-bar button{
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.5s ease;
+    border-radius: 10px;
+}
+
+#left-bar button:hover{
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
 #main-feed-container{
     border: 1px solid white;
     height: 80vh;

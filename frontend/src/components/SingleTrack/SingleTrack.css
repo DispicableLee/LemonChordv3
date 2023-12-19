@@ -1,0 +1,38 @@
+@font-face {
+  font-family: 'Quicksand Medium';
+  src: url('../style/Fonts/Quicksand-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Quicksand Regular';
+  src: url('../style/Fonts/Quicksand-Regular.ttf');
+}
+
+
+
+#single-track-main{
+    border: 1px solid white;
+    height: 5vh;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 5px;
+}
+
+.play-button{
+    width: 2%;
+    height: 75%;
+    flex-shrink: 0;
+    border-radius: 90px;
+    background: linear-gradient(90deg, #1BA2B1 0%, rgba(251, 216, 127, 0.57) 100%);
+}
+
+.play-button:hover{
+    background: linear-gradient(90deg,#6A0D83, #80287D, #954178, #AB5D72, #C47B6C, #EEAF61)
+}
+
+.track-title{
+    font-family: 'Quicksand Regular';
+    color: #e2e2e2;
+}
