@@ -10,11 +10,15 @@ const TrackSchema = new Schema({
         type: String,
         required: true
     },
-    uploaderId:{
+    uploader:{
         type: Schema.Types.ObjectId,
+        ref: 'User',
         required: true
     },
-    albumId: String
+    album:{
+        type: Schema.Types.ObjectId,
+        ref: 'Album'
+    }
     // likes
     // comments
 })   

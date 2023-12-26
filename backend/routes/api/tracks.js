@@ -9,13 +9,17 @@ const validateTrackInput = require('../../validations/tracks')
 
 /* GET all tracks */
 // http://localhost:8000/api/tracks ======================
-router.get('/', async (req, res, next) =>{
+router.get('/', async (req, res, next) => {
   try {
-    const tracks = await Track.find()
-    return res.status(200).send(tracks)
-  }
-  catch(err) {
-    return res.json([]);
+    const tracks = await Track.find().populate({
+      path: 'uploader', // Populate the 'uploader' and 'album' fields
+      select: '_id username', // Select the fields you want to include
+    });
+
+    return res.status(200).json(tracks);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

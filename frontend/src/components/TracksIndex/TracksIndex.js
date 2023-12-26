@@ -19,7 +19,8 @@ export default function TracksIndex(){
             <SingleTrack 
                 key={track._id} 
                 title={track.title}
-                
+                audioUrl = {track.audioUrl}
+                uploader = {track.uploader}
             />
         )
     })

@@ -1,5 +1,7 @@
 #search-main{
     border: 1px solid white;
     height: 4vh;
-    margin-bottom: 10px
+    width: 100%;
+    /* margin-bottom: 50px; */
+    position: sticky;
 }

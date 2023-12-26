@@ -6,11 +6,12 @@
 }
 
 #left-bar{
-    border-right: 1px solid white;
+    border-radius: 0px 0px 45px 0px;
+    border-right: 1px solid rgba(226, 226, 226, 0.50);
     width: 10%;
     height: 70vh;
     display: flex;
-    margin-top: 1%;
+    margin: 1% 1% 0% 0%;
     padding: 1vh 2.5vh 2.5vh 2.5vh;
     flex-direction: column;
     align-items: center;
@@ -33,7 +34,7 @@
 }
 
 #main-feed-container{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     height: 80vh;
     width: 90%;
 }

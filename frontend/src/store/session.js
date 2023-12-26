@@ -5,6 +5,8 @@ const RECEIVE_SESSION_ERRORS = "session/RECEIVE_SESSION_ERRORS";
 const CLEAR_SESSION_ERRORS = "session/CLEAR_SESSION_ERRORS";
 export const RECEIVE_USER_LOGOUT = "session/RECEIVE_USER_LOGOUT";
 
+
+// ⁡⁢⁣⁣================ session actions ====================⁡
 const RECIEVE_LIGHT_DARK = "session/RECIEVE_LIGHT_DARK";
 
 export const recieveLightDark = isLight => ({
@@ -12,6 +14,17 @@ export const recieveLightDark = isLight => ({
   payload: isLight,
 })
 
+const RECIEVE_CURRENT_TRACK = "session/RECIEVE_CURRENT_TRACK"
+
+export const recieveCurrentTrack = track => ({
+  type: RECIEVE_CURRENT_TRACK,
+  track
+})
+
+
+
+
+// ⁡⁣⁣⁢============= Auth Actions =======================⁡
 // Dispatch receiveCurrentUser when a user logs in.
 const receiveCurrentUser = currentUser => ({
   type: RECEIVE_CURRENT_USER,
@@ -104,6 +117,8 @@ const sessionReducer = (state = initialState, action) => {
       return initialState;
     case RECIEVE_LIGHT_DARK:
       return {...state, isLight: action.payload}
+    case RECIEVE_CURRENT_TRACK:
+      return {...state, currentTrack: action.track}
     default:
       return state;
   }
