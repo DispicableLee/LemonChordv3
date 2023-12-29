@@ -13,7 +13,7 @@ export default function TracksIndex(){
         dispatch(fetchTracks())
     },[dispatch])
     const fetchedTracks = useSelector(store=>store?.tracks)
-    console.log(fetchedTracks)
+    // console.log(fetchedTracks)
     const renderedTracks = fetchedTracks?.map((track)=>{
         return (
             <SingleTrack 

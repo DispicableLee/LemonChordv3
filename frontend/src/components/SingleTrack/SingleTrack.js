@@ -6,8 +6,29 @@ import './SingleTrack.css'
 export default function SingleTrack({title, audioUrl, uploader}){
     const dispatch = useDispatch()
     // console.log(uploader)
+
+
+
+
+    function setCurrentTrack(){
+        let trackObj = {
+            title,
+            audioUrl,
+            uploader
+        }
+        dispatch(recieveCurrentTrack(trackObj))
+    }
+
+
+
+
+
+
+
     return (
-        <div id="single-track-main">
+        <div id="single-track-main"
+            onClick={setCurrentTrack}
+        >
             <div className="play-button">
 
             </div>

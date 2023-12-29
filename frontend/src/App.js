@@ -4,9 +4,10 @@ import { useDispatch } from 'react-redux';
 import { Switch } from 'react-router-dom';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
+import AlbumIndex from './components/AlbumIndex/AlbumIndex';
+import AudioFooter from './components/AudioFooter/AudioFooter';
 import NavBar from './components/NavBar/NavBar';
 import SplashForm from './components/SplashForms/SplashForm';
-import AlbumIndex from './components/AlbumIndex/AlbumIndex';
 import MainPage from './components/MainPage/MainPage';
 import LoginForm from './components/SessionForms/LoginForm';
 import SignupForm from './components/SessionForms/SignupForm';
@@ -19,7 +20,7 @@ export default function App() {
   // ===================== loads a user in and initializes the app component =====================
   const [loaded, setLoaded] = useState(false);
   const loggedIn = useSelector(store=>!!store.session.user)
-  console.log(loggedIn)
+  const currentTrack = useSelector(store=>store?.session?.currentTrack)
   const lighting = useSelector(store=>store.session.isLight)
   const dispatch = useDispatch();
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function App() {
     <div id='app' className={isLight === true ? '' : 'dark-mode'}>
       <NavBar/>
       {!loggedIn ? <SplashForm/> : <MainPage/>}
+      {loggedIn && currentTrack && <AudioFooter/>}
       <Switch>
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
