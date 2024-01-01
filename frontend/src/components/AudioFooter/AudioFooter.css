@@ -1,9 +1,13 @@
 #audio-footer-main{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     width: 100%;
-    top: 0;
+    bottom: 0;
+    position: fixed;
     height: 100px;
-    background-color: black;
+    /* background-color: black; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 #controls-progress{

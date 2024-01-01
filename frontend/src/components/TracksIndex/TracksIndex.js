@@ -21,6 +21,7 @@ export default function TracksIndex(){
                 title={track.title}
                 audioUrl = {track.audioUrl}
                 uploader = {track.uploader}
+                album = {track.album}
             />
         )
     })

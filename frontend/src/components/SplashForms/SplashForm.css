@@ -7,8 +7,8 @@
 
 #splashform-main{
     /* border: 1px solid white; */
-    width: 75%;
-    height: 70%;
+    width: 100%;
+    /* height: 70%; */
     position: absolute;
     top: 50%;
     left: 50%;
@@ -19,6 +19,13 @@
     justify-content: flex-start;
     align-items: center;
 }
+
+
+
+
+
+
+/* ⁡⁣⁣⁢========== button to switch to sign-in page ====================== ⁡*/
 
 #signup-activate {
     font-family: "Smooch";
@@ -31,14 +38,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    transition: background 0.2s ease; /* Use the same property name as in hover style */
+    transition: all 0.4s ease; 
+    /* transition: background 0.5s ease; */
 }
 
 
 #signup-activate h2{
     font-size: 30px;
     letter-spacing: 2px;
-    transition: background 0.5s ease;
+    transition: all 0.5s ease;
     word-spacing: 0.1em;
     background: linear-gradient(180deg, #E2E2E2 0%, #1BA2B1 100%);
     background-clip: text;
@@ -52,7 +60,7 @@
 #signup-activate:hover {
     border-bottom: 1px solid var(--LemonChordLightAccent, #E2E2E2);
     background: linear-gradient(180deg, #1BA2B1 0%, rgba(251, 216, 127, 0.75) 99.99%, rgba(226, 226, 226, 0.00) 100%);
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 4px 4px 0px #D86F49;
     cursor: pointer
 }
 
@@ -68,4 +76,10 @@
     border-bottom: 1px solid var(--LemonChordLightAccent, #E2E2E2);
     background: linear-gradient(180deg, #1BA2B1 0%, rgba(251, 216, 127, 0.75) 99.99%, rgba(226, 226, 226, 0.00) 100%);
     box-shadow: none
+}
+
+/* ⁡⁣⁣⁢=================== #signup-activate.dark =============================⁡ */
+
+#signup-activate.dark-mode:hover{
+        background: linear-gradient(180deg, #6A0D83 0%, #80287D 20%, #954178 40%, #AB5D72 60%, #C47B6C 80%, #EEAF61 100%);
 }

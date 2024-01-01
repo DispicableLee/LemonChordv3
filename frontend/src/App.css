@@ -13,6 +13,11 @@
   src: url('../src/components/style/Fonts/Quicksand-Medium.ttf');
 }
 
+body, html {
+   height: 100%;
+   margin: 0;
+}
+
 #app{
   height: 100vh;
   background: linear-gradient(180deg, #1BA2B1 9.38%, #7FC2CA 47.4%, #EEAF61 72.92%, #FB9062 86.46%, #EE5D6C 100%);
@@ -30,6 +35,7 @@
   font-family: 'Smooch';
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   letter-spacing: 1px;
+  margin: 0;
   /* word-spacing: 1em */
 
 }
@@ -44,7 +50,7 @@
     font-family: 'Quicksand Regular';
     font-size: 24px;
     color: #e2e2e2;
-    /* height: 70%; */
+    transition: all 0.3s ease;
     width: 50%;
     padding: 0px 0px 5px 15px;
     background-color: transparent;
@@ -59,7 +65,9 @@
 
 .session-form:focus{
   outline: none;
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 4px 0px #e2e2e2;
+  border-color: #e2e2e2;
+  /* box-shadow: 0 0 5px #e2e2e2; */
 }
 
 
@@ -70,6 +78,7 @@
     width: 50%;
     font-size: 30px;
     letter-spacing: 2px;
+    transition: all 0.3s ease;
 }
 
 .session-submit:enabled{
@@ -78,6 +87,10 @@
     background-clip: text;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.session-submit:hover{
+
 }
 
 

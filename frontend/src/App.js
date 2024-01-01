@@ -5,6 +5,7 @@ import { Switch } from 'react-router-dom';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import AlbumIndex from './components/AlbumIndex/AlbumIndex';
+import AlbumShow from './components/AlbumShow/AlbumShow';
 import AudioFooter from './components/AudioFooter/AudioFooter';
 import NavBar from './components/NavBar/NavBar';
 import SplashForm from './components/SplashForms/SplashForm';
@@ -40,6 +41,7 @@ export default function App() {
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
         <Route exact path="/albums" component={AlbumIndex}/>
+        <Route exact path="/album/:id" component={AlbumShow}/>
       </Switch>
     </div>
   );

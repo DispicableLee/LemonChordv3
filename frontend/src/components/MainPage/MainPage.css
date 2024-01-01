@@ -1,5 +1,5 @@
 #main-page-main{
-    border: 1px solid white;
+    border-top: 1px solid white;
     display: flex;
     flex-direction: row;
     justify-content: space-between;

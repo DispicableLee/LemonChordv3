@@ -11,7 +11,7 @@ import "./AudioFooter.css"
 export default function AudioFooter(){
     const dispatch = useDispatch()
     const currentTrack = useSelector(store=>store?.session?.currentTrack)
-    console.log(currentTrack)
+    // console.log(currentTrack)
     const [progress, setProgress] = useState(0);
     const [duration, setDuration] = useState(0);
 
@@ -80,7 +80,7 @@ export default function AudioFooter(){
                 onCanPlay={(e) => setIsReady(true)}
                 onPlaying={() => setIsPlaying(true)}
                 onPause={() => setIsPlaying(false)}
-                // autoPlay
+                autoPlay
             >
                 <source type="audio/mpeg" src={currentTrack?.audioUrl} />
             </audio>

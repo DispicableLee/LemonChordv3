@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { recieveCurrentTrack } from "../../store/session"
 import './SingleTrack.css'
 
-export default function SingleTrack({title, audioUrl, uploader}){
+export default function SingleTrack({title, audioUrl, uploader, album}){
     const dispatch = useDispatch()
     // console.log(uploader)
 
@@ -14,7 +14,8 @@ export default function SingleTrack({title, audioUrl, uploader}){
         let trackObj = {
             title,
             audioUrl,
-            uploader
+            uploader,
+            album
         }
         dispatch(recieveCurrentTrack(trackObj))
     }

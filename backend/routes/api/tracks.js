@@ -11,10 +11,15 @@ const validateTrackInput = require('../../validations/tracks')
 // http://localhost:8000/api/tracks ======================
 router.get('/', async (req, res, next) => {
   try {
-    const tracks = await Track.find().populate({
+    const tracks = await Track.find()
+    .populate({
       path: 'uploader', // Populate the 'uploader' and 'album' fields
       select: '_id username', // Select the fields you want to include
-    });
+    })
+    .populate({
+    path: 'album',
+    select: '_id title imageUrl',
+  });
 
     return res.status(200).json(tracks);
   } catch (err) {

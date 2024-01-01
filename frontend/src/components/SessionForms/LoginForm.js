@@ -30,8 +30,16 @@ function LoginForm () {
     dispatch(login({ email, password })); 
   }
 
+  const handleDemoSubmit = (e) =>{
+    e.preventDefault()
+    setEmail("lee.robert053@gmail.com")
+    setPassword("Asianman2453")
+    dispatch(login({ email, password })); 
+  }
+
   return (
-    <form id="login" onSubmit={handleSubmit}>
+    <>
+    <form id="login" onSubmit={()=>handleSubmit}>
       <h2 className='subtitle-header'>Log In</h2>
       <div className="errors">{errors?.email}</div>
         <input type="text"
@@ -57,6 +65,11 @@ function LoginForm () {
         }}
       />
     </form>
+
+    <form id='alt-signin' onSubmit={handleDemoSubmit}>
+        <input type='submit' onSub/>
+    </form>
+    </>
   );
 }
 
