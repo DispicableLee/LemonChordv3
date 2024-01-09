@@ -1,0 +1,27 @@
+#left-bar{
+    border-radius: 0px 0px 45px 0px;
+    border-right: 1px solid rgba(226, 226, 226, 0.50);
+    width: 10%;
+    height: 70vh;
+    display: flex;
+    margin: 1% 1% 0% 0%;
+    padding: 1vh 2.5vh 2.5vh 2.5vh;
+    flex-direction: column;
+    align-items: center;
+    gap: 5%;
+
+}
+
+#left-bar button{
+    background-color: transparent;
+    border: none;
+    transition: background-color 0.5s ease;
+    border-radius: 10px;
+}
+
+#left-bar button:hover{
+    border-radius: 10px;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}

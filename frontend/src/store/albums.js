@@ -22,6 +22,27 @@ export const fetchAlbums = () => async dispatch =>{
     }
 }
 
+const RECEIVE_ALBUM = "albums/RECEIVE_ALBUM"
+function receiveAlbum(album){
+    return {
+        type: RECEIVE_ALBUM,
+        album
+    }
+}
+
+export const fetchOneAlbum = (albumId) => async dispatch=>{
+    try{
+        const res = await jwtFetch(`/api/albums/${albumId}`)
+        const shownAlbum = await res.json()
+        dispatch(receiveAlbum(shownAlbum))
+    }catch(err){
+        const resBody = await err.json();
+        if(resBody.statusCode === 400){
+            dispatch(recieveErrors(resBody.errors))
+        }
+    }
+}
+
 
 
 // ⁡⁢⁢⁢errors =========================⁡
@@ -40,6 +61,8 @@ const albumsReducer = (state={}, action)=>{
     switch(action.type){
         case RECEIVE_ALBUMS:
             return {...newState, all: action.albums}
+        case RECEIVE_ALBUM:
+            return {...newState, shownAlbum: action.album}
         default:
             return newState
     }

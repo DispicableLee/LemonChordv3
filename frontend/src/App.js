@@ -40,8 +40,6 @@ export default function App() {
       <Switch>
         <AuthRoute exact path="/login" component={LoginForm} />
         <AuthRoute exact path="/signup" component={SignupForm} />
-        <Route exact path="/albums" component={AlbumIndex}/>
-        <Route exact path="/album/:id" component={AlbumShow}/>
       </Switch>
     </div>
   );

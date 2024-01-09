@@ -15,7 +15,7 @@ export default function SpashForm(props){
             { onSignup ? <LoginForm/> : <SignupForm/>}
             <h3>or</h3>
             <div id="signup-activate"
-                classname = {isLight === true ? '' : 'dark-mode'}
+                className = {isLight === true ? '' : 'dark-mode'}
                 onClick={()=>setOnSignUp(!onSignup)}
             >
                 {onSignup ?<h2> Sign Up</h2> : <h2>Sign In</h2>}
