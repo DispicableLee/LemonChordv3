@@ -4,8 +4,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchOneAlbum } from "../../store/albums";
 import SingleTrack from "../SingleTrack/SingleTrack";
+import './AlbumShow.css'
 
-export default function AlbumShow(){
+export default function AlbumShow({}){
     const dispatch = useDispatch()
     const {id} = useParams()
     const shownAlbum = useSelector(store=>store?.albums?.shownAlbum)
@@ -39,8 +40,12 @@ export default function AlbumShow(){
 
 
     return (
-        <div style={{border: "1px solid white"}}>
-            <h1>Album Show</h1>
+        <div id="album-show-main">
+            <div className="album-show-info">
+                <img src={shownAlbumImage}/>
+                <h1>Album Show</h1>
+
+            </div>
             {renderedAlbumTracks}
         </div>
     )
