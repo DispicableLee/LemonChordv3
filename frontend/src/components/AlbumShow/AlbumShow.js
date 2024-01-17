@@ -10,9 +10,9 @@ export default function AlbumShow({}){
     const dispatch = useDispatch()
     const {id} = useParams()
     const shownAlbum = useSelector(store=>store?.albums?.shownAlbum)
-    let shownAlbumImage = shownAlbum?.imageUrl
-    let shownAlbumTitle = shownAlbum?.title
-    let shownAlbumId = shownAlbum?._id
+    let imageUrl = shownAlbum?.imageUrl
+    let title = shownAlbum?.title
+    let _id = shownAlbum?._id
     let shownAlbumUploader = shownAlbum?.uploader
     useEffect(()=>{
         dispatch(fetchOneAlbum(id))
@@ -27,9 +27,9 @@ export default function AlbumShow({}){
                 audioUrl = {track?.audioUrl}
                 uploader = {shownAlbumUploader}
                 album = {{
-                    shownAlbumImage,
-                    shownAlbumTitle,
-                    shownAlbumId
+                    imageUrl,
+                    title,
+                    _id
                 }}
             />
         )
@@ -42,7 +42,7 @@ export default function AlbumShow({}){
     return (
         <div id="album-show-main">
             <div className="album-show-info">
-                <img src={shownAlbumImage}/>
+                <img src={imageUrl}/>
                 <h1>Album Show</h1>
 
             </div>

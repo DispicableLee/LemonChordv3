@@ -2,8 +2,11 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from "react-redux";
 import { useState, useEffect, useRef } from "react";
+import { removeCurrentTrack } from '../../store/session';
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import "./AudioFooter.css"
 
 
@@ -72,6 +75,8 @@ export default function AudioFooter(){
     return (
         <div id="audio-footer-main">
 
+
+
             <audio
                 id="audio"
                 ref={audioRef}
@@ -85,6 +90,12 @@ export default function AudioFooter(){
                 <source type="audio/mpeg" src={currentTrack?.audioUrl} />
             </audio>
         {currentTrack && 
+            <>
+            <div className='remove-track'
+                onClick={()=>dispatch(removeCurrentTrack())}
+                >
+                <CloseRoundedIcon/>
+            </div>
             <div id="controls-progress">
                 <div className="backwards-pause-forwards">
                     {/* <IconButton onClick={handleSkipBackward} disabled={!isReady} style={{color: "white"}}>
@@ -102,9 +113,9 @@ export default function AudioFooter(){
                 </div>
                 {/* ⁡⁢⁣⁢progress bar⁡ */}
                 <section className="progress-bar-holder">
-                    {/* Use the formatTime function for displaying time */}
+                    
                     <h4>{formatTime(audioRef.current?.currentTime)}</h4>
-                    {/* Dynamically set the width based on the progress */}
+                    
                     <div className="progress-bar-wrapper" onClick={handleSeek}>
                         <div
                             className="progress-bar"
@@ -116,7 +127,15 @@ export default function AudioFooter(){
                     <h4>{formatTime(audioRef.current?.duration)}</h4>
                         
                 </section>
+                {currentTrack?.title} - 
+                <Link to={`/album/${currentTrack?.album?._id}`}>
+                    {currentTrack?.album?.title}
+                </Link>
             </div>
+            <div className='song-info'>
+                    
+            </div>
+            </>
         }
 
 

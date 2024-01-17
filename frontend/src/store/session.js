@@ -21,6 +21,12 @@ export const recieveCurrentTrack = track => ({
   track
 })
 
+const REMOVE_CURRENT_TRACK = "session/REMOVE_CURRENT_TRACK"
+
+export const removeCurrentTrack = () => ({
+  type: REMOVE_CURRENT_TRACK
+})
+
 
 
 
@@ -119,6 +125,8 @@ const sessionReducer = (state = initialState, action) => {
       return {...state, isLight: action.payload}
     case RECIEVE_CURRENT_TRACK:
       return {...state, currentTrack: action.track}
+    case REMOVE_CURRENT_TRACK:
+      return {...state, currentTrack: null}
     default:
       return state;
   }

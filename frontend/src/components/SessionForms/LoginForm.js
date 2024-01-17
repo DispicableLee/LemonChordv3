@@ -67,7 +67,7 @@ function LoginForm () {
     </form>
 
     <form id='alt-signin' onSubmit={handleDemoSubmit}>
-        <input type='submit' onSub/>
+        <input type='submit'/>
     </form>
     </>
   );
