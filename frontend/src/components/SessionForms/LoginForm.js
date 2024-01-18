@@ -39,7 +39,7 @@ function LoginForm () {
 
   return (
     <>
-    <form id="login" onSubmit={()=>handleSubmit}>
+    <form id="login" onSubmit={handleSubmit}>
       <h2 className='subtitle-header'>Log In</h2>
       <div className="errors">{errors?.email}</div>
         <input type="text"

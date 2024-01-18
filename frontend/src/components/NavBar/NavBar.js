@@ -5,7 +5,8 @@ import { logout } from '../../store/session';
 import SignupForm from '../SessionForms/SignupForm';
 import LoginForm from '../SessionForms/LoginForm';
 import { recieveLightDark } from '../../store/session';
-import { Icon } from '@iconify/react';
+import { Icon } from '@mui/material';
+import WbSunnyRoundedIcon from '@mui/icons-material/WbSunnyRounded';
 import "./NavBar.css"
 
 export default function NavBar () {
@@ -54,7 +55,7 @@ export default function NavBar () {
             {loggedInUser &&             
               <button onClick={(e)=>logoutUser(e)}>Log Out</button>
             }
-            <Icon 
+            <WbSunnyRoundedIcon
               icon="ph:sun-thin" 
               color= {hovered ? "#6a0d83" : "#e2e2e2"} 
               width="70" 

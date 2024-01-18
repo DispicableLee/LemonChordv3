@@ -1,5 +1,5 @@
 import './MainPage.css'
-import { Icon } from '@iconify/react';
+import { Icon } from '@mui/material';
 import { useState } from 'react';
 import LeftBar from '../LeftBar/LeftBar';
 import TracksIndex from '../TracksIndex/TracksIndex';
