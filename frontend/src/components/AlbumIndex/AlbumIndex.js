@@ -36,11 +36,13 @@ export default function AlbumIndex(){
 
     function handleSubmitAlbum(e){
         e.preventDefault()
-        const albumFormData = new FormData();
-        albumFormData.append('title', newAlbumTitle);
-        albumFormData.append('uploader', uploaderId);
-        albumFormData.append('image', newAlbumImage);
-        dispatch(uploadNewAlbum(albumFormData))
+        const newAlbumObj = {
+            title: newAlbumTitle,
+            imageUrl: newAlbumImage,
+            uploader: uploaderId
+        }
+
+        dispatch(uploadNewAlbum(newAlbumObj))
     }
 
 
@@ -65,12 +67,9 @@ export default function AlbumIndex(){
                     />
 
                     <input
-                        type="file"
-                        accept="image/*" // This ensures only image files can be selected
-                        onChange={(e) => {
-                            const file = e.target.files[0];
-                            setNewAlbumImage(URL.createObjectURL(file))
-                        }}
+                        type="text"
+                        placeholder="image url"
+                        onChange={(e)=>setNewAlbumImage(e.target.value)}
                     />
                     <input type="Submit"/>
 

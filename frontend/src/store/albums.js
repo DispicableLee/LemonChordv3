@@ -60,13 +60,13 @@ function recieveNewAlbum(album){
 
 export const uploadNewAlbum = (albumFormData) => async dispatch =>{
     try{
-        debugger
+        // debugger
         const res = await jwtFetch('/api/albums',{
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: albumFormData
+            body: JSON.stringify(albumFormData)
         })
         if (!res.ok) {
             // Handle error as needed
