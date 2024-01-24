@@ -53,7 +53,11 @@ export default function NavBar () {
           {loggedInUser &&  <h1 className='title-header'>LemonChord</h1>}
           <div id="nav-auth">
             {loggedInUser &&             
-              <button onClick={(e)=>logoutUser(e)}>Log Out</button>
+              <button onClick={(e)=>logoutUser(e)}
+                className='log-out-button'
+              >
+                Log Out
+                </button>
             }
             <WbSunnyRoundedIcon
               icon="ph:sun-thin" 

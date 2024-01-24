@@ -1,6 +1,8 @@
 import jwtFetch from "./jwt";
 import { RECEIVE_USER_LOGOUT } from "./session";
 
+
+// ⁡⁢⁢⁡⁣⁢⁣============= GET actions for albums ==============⁡⁡
 const RECEIVE_ALBUMS = "albums/RECEIVE_ALBUMS"
 function receiveAlbums(albums){
     return {
@@ -45,7 +47,45 @@ export const fetchOneAlbum = (albumId) => async dispatch=>{
 
 
 
-// ⁡⁢⁢⁢errors =========================⁡
+// ⁡⁣⁣⁢============== POST new album actions ================⁡
+const RECIEVE_NEW_ALBUM = "albums/RECIEVE_NEW_ALBUM"
+
+function recieveNewAlbum(album){
+    return {
+        type: RECIEVE_NEW_ALBUM,
+        album
+    }
+}
+
+
+export const uploadNewAlbum = (albumFormData) => async dispatch =>{
+    try{
+        debugger
+        const res = await jwtFetch('/api/albums',{
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: albumFormData
+        })
+        if (!res.ok) {
+            // Handle error as needed
+            console.error('Failed to create new album');
+            return;
+        }
+
+        // Dispatch any actions or handle success as needed
+        console.log('New album created successfully');
+        const data = await res.json()
+        // You might want to dispatch a fetchAlbums action to update the list of albums
+        dispatch(recieveNewAlbum(data));
+    }catch (error) {
+        console.error('Error creating new album', error);
+    }
+}
+
+
+// ⁡⁢⁣⁢================== errors =========================⁡⁡
 
 
 const RECIEVE_TRACK_ERRORS = "tracks/RECEIVE_TRACK_ERRORS";
@@ -63,6 +103,9 @@ const albumsReducer = (state={}, action)=>{
             return {...newState, all: action.albums}
         case RECEIVE_ALBUM:
             return {...newState, shownAlbum: action.album}
+        case RECIEVE_NEW_ALBUM:
+            const updatedAllAlbums = newState.all ? [...newState.all, action.album] : [action.album];
+            return { ...newState, all: updatedAllAlbums };
         default:
             return newState
     }

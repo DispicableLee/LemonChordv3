@@ -5,12 +5,12 @@
     justify-content: center;
     padding: 15px;
     /* border: 1px solid white; */
-    height: 5vh;
+    height: 7vh;
 }
-
+/* 
 #nav-main button{
     height: 40%;
-}
+} */
 
 #nav-main h1{
     align-items: center;

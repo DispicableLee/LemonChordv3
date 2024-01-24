@@ -1,6 +1,9 @@
 const express = require('express');
 const Album = require('../../models/Album');
 const router = express.Router();
+const validateAlbumInput = require('../../validations/albums');
+const { validationResult } = require('express-validator');
+
 
 /* GET ALL ALBUMS */
 // http://localhost:8000/api/albums
@@ -38,12 +41,24 @@ router.get('/:albumId', async function(req,res,next){
 
 // POST an album
 // http://localhost:8000/api/albums
-router.post('/', async(req,res,next)=>{
-  debugger
-  const newAlbum = new Album(req.body)
-  newAlbum.save().catch((err)=>console.log(err))
-  return res.status(200).send(newAlbum)
-})
+router.post('/', validateAlbumInput, async (req, res, next) => {
+    try {
+        const errors = validationResult(req);
+        
+        if (!errors.isEmpty()) {
+          debugger
+            return res.status(400).json({ errors: errors.array() });
+        }
+
+        const newAlbum = new Album(req.body);
+        await newAlbum.save();
+
+        return res.status(200).json(newAlbum);
+    } catch (err) {
+        console.error(err);
+        return res.status(500).json({ error: "internal server error" });
+    }
+});
 
 
 
