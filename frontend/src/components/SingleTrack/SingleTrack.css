@@ -21,8 +21,14 @@
     padding: 10px;
     border-radius: 0px 0px 0px 15px;
     border-bottom: 1px solid rgba(226, 226, 226, 0.75);
+    transition: all 0.3s ease;
+    
 }
 
+#single-track-main:hover{
+  box-shadow: 0px 4px 0px 0px #e2e2e2;
+  border-color: #e2e2e2;
+}
 .play-button{
     width: 3%;
     height: 40%;

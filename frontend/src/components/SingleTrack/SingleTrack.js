@@ -1,11 +1,12 @@
 import React from "react"
 import { useDispatch } from "react-redux"
+import { useState } from "react"
 import { recieveCurrentTrack } from "../../store/session"
 import './SingleTrack.css'
 
 export default function SingleTrack({title, audioUrl, uploader, album}){
     const dispatch = useDispatch()
-    // console.log(uploader)
+    const [isPlayButtonActive, setIsPlayButtonActive] = useState(false)
 
 
 

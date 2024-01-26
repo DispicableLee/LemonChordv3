@@ -7,11 +7,11 @@ export default function AlbumCard({key, id, imageUrl, title, uploader}){
     const history = useHistory()
     return (
         <Link id="album-card-main" to={`/album/${id}`}>
-            <div>
+            {/* <div> */}
                 <img src={imageUrl}/>
                 <h3>{title}</h3>
                 <h4>{uploader.username}</h4>
-            </div>
+            {/* </div> */}
         </Link>
     )
 }

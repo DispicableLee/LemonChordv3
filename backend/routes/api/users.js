@@ -21,6 +21,7 @@ router.get('/', function(req, res, next) {
 
 // ⁡⁣⁢⁡⁢⁣⁢===================== User Auth ==============================⁡
 // ⁡⁢⁣⁢user signup⁡
+//=============== POST a new user =================
 router.post('/register', validateRegisterInput, async (req, res, next) => {
   // Check to make sure no one has already registered with the proposed email or
   // username.

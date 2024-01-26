@@ -2,7 +2,7 @@ import jwtFetch from "./jwt";
 import { RECEIVE_USER_LOGOUT } from "./session";
 
 
-// ⁡⁢⁢⁡⁣⁢⁣============= GET actions for albums ==============⁡⁡
+// ⁡⁢⁢⁡⁣⁢⁣============= GET album actions ==============⁡⁡
 const RECEIVE_ALBUMS = "albums/RECEIVE_ALBUMS"
 function receiveAlbums(albums){
     return {
@@ -47,7 +47,7 @@ export const fetchOneAlbum = (albumId) => async dispatch=>{
 
 
 
-// ⁡⁣⁣⁢============== POST new album actions ================⁡
+// ⁡⁣⁣⁡⁣⁢⁣============== POST album actions ================⁡⁡
 const RECIEVE_NEW_ALBUM = "albums/RECIEVE_NEW_ALBUM"
 
 function recieveNewAlbum(album){
@@ -88,11 +88,28 @@ export const uploadNewAlbum = (albumFormData) => async dispatch =>{
 // ⁡⁢⁣⁢================== errors =========================⁡⁡
 
 
-const RECIEVE_TRACK_ERRORS = "tracks/RECEIVE_TRACK_ERRORS";
+const RECIEVE_ALBUM_ERRORS = "albums/RECEIVE_TRACK_ERRORS";
 function recieveErrors(errors){
     return {
-        type: RECIEVE_TRACK_ERRORS,
+        type: RECIEVE_ALBUM_ERRORS,
         errors
+    }
+}
+const CLEAR_ALBUM_ERRORS = 'albums/CLEAR_ALBUM_ERRORS'
+export function clearAlbumErrors(){
+    return {
+        type: CLEAR_ALBUM_ERRORS
+    }
+}
+const nullErrors = null
+export const albumErrorsReducer = (state=nullErrors, action)=>{
+    switch(action.type){
+        case RECIEVE_ALBUM_ERRORS:
+            return action.errors;
+        case CLEAR_ALBUM_ERRORS:
+            return nullErrors;
+        default:
+            return state;
     }
 }
 

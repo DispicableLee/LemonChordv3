@@ -14,18 +14,21 @@ const userSchema = new Schema({
     type: String,
     required: true
   },
-  tracks: {
-    type: Array,
+  tracks: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Tracks',
     required: true
-  },
-  albums: {
-    type: Array,
+  }],
+  albums: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Album',
+    required: true 
+  }],
+  playlists: [{
+    type: Schema.Types.ObjectId,
+    ref: 'Playlist',
     required: true
-  },
-  playlists: {
-    type: Array,
-    required: true
-  }
+  }]
 //   playlists
 //   etc...
 

@@ -11,16 +11,13 @@
     gap: 5%;
 }
 
-#left-bar button{
-    background-color: transparent;
-    border: none;
-    transition: background-color 0.5s ease;
-    border-radius: 10px;
-}
-
-#left-bar button:hover{
-    border-radius: 10px;
-    background-color: white;
-    border: none;
-    cursor: pointer;
+.album-track-index-icons{
+    border: 1px solid #e2e2e2;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 25%;
+    gap: 20%;
 }

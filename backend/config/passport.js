@@ -46,7 +46,10 @@ exports.loginUser = async function(user) {
   const userInfo = {
     _id: user._id,
     username: user.username,
-    email: user.email
+    email: user.email,
+    tracks: user.tracks,
+    albums: user.albums,
+    playlists: user.playlists
   };
   const token = await jwt.sign(
     userInfo, // payload

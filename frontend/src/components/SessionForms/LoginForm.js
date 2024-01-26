@@ -20,10 +20,6 @@ function LoginForm () {
     };
   }, [dispatch]);
 
-  const update = (field) => {
-    const setState = field === 'email' ? setEmail : setPassword;
-    return e => setState(e.currentTarget.value);
-  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,14 +40,14 @@ function LoginForm () {
       <div className="errors">{errors?.email}</div>
         <input type="text"
           value={email}
-          onChange={update('email')}
+          onChange={(e)=>setEmail(e.target.value)}
           placeholder="Email"
           className='session-form'
         />
       <div className="errors">{errors?.password}</div>
         <input type="password"
           value={password}
-          onChange={update('password')}
+          onChange={(e)=>setPassword(e.target.value)}
           placeholder="Password"
           className='session-form'
         />

@@ -78,7 +78,10 @@ export default function AlbumIndex(){
             </div>
             <div id='albums-index-container'>
                 <div className="new-album-modal-switch"
-                    onClick={()=>setNewAlbumModal(!newAlbumModal)}
+                    onClick={()=>{
+                        
+                        setNewAlbumModal(!newAlbumModal)
+                    }}
                 >
                     <h2>create neww Album</h2>
                 </div>
