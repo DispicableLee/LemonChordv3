@@ -4,8 +4,9 @@ import { useState } from 'react';
 import LeftBar from '../LeftBar/LeftBar';
 import TracksIndex from '../TracksIndex/TracksIndex';
 import AlbumIndex from '../AlbumIndex/AlbumIndex';
-import { Switch, Route } from 'react-router-dom/cjs/react-router-dom.min';
 import AlbumShow from '../AlbumShow/AlbumShow';
+import ProfileShow from '../ProfileShow/ProfileShow';
+import { Switch, Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 function MainPage() {
   return (
@@ -16,6 +17,7 @@ function MainPage() {
           <Route exact path="/albums" component={AlbumIndex}/>
           <Route exact path="/tracks" component={TracksIndex}/>
           <Route exact path= "/album/:id" component={AlbumShow}/>
+          <Route exact path="/profile/:id" component={ProfileShow}/>
         </Switch>
       </div>
     </div>

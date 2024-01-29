@@ -2,8 +2,10 @@ import React from "react";
 import AlbumRoundedIcon from '@mui/icons-material/AlbumRounded';
 import AudiotrackRoundedIcon from '@mui/icons-material/AudiotrackRounded';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import { useSelector } from "react-redux";
 import './LeftBar.css'
 export default function LeftBar() {
+  const currentUser = useSelector(store=>store?.session?.user)
   return (
     <aside id="left-bar">
 
@@ -16,9 +18,11 @@ export default function LeftBar() {
         </Link>
       </div>
 
-      <div>
+      <Link className="profile-button"
+        to={`/profile/${currentUser._id}`}
+      >
         
-      </div>
+      </Link>
 
     </aside>
   );

@@ -21,3 +21,15 @@
     height: 25%;
     gap: 20%;
 }
+
+.profile-button{
+    border: 1px solid white;
+    width: 40%;
+    height: 10%
+}
+
+.profile-button:hover{
+    background-color: #e2e2e2;
+    cursor: pointer;
+}
+

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema;
 
-const PlaylistSchema = new Schema({
+const playlistSchema = new Schema({
     title:{
         type: String,
         required: true
@@ -18,4 +18,6 @@ const PlaylistSchema = new Schema({
     imageUrl: String
 })
 
-module.exports = mongoose.model('Playlist', PlaylistSchema)
+const Playlist = mongoose.model('Playlist', playlistSchema);
+
+module.exports = Playlist;

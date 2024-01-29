@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+const Playlist = require('../../models/Playlist')
 const passport = require('passport');
 
 const { loginUser, restoreUser } = require('../../config/passport');
@@ -17,6 +18,26 @@ router.get('/', function(req, res, next) {
     message: "GET /api/users"
   });
 });
+
+// GET one user
+// http://localhost:8000/api/users/getuser/:userid
+router.get('/getuser/:userid', async function(req, res, next){
+  try{
+    const user = await User.findById(req.params.userid)
+    .populate({
+      path: 'albums',
+      select: '_id title'
+    })
+    .populate({
+      path: 'playlists',
+      select: '_id title'
+    })
+    return res.status(200).send(user)
+  }catch(err){
+    console.error(err)
+    return res.status(400).send({error: err})
+  }
+})
 
 
 // ⁡⁣⁢⁡⁢⁣⁢===================== User Auth ==============================⁡
@@ -47,7 +68,6 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
 
 
 
-  const likedTracks = []
 
   // Otherwise create a new user
   const newUser = new User({
@@ -55,8 +75,21 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
     email: req.body.email,
     tracks: [],
     albums: [],
-    playlists: [likedTracks]
+    playlists: []
   });
+
+    const likedTracksPlaylist = new Playlist({
+    title: 'Liked Tracks',
+    uploader: newUser._id, // Assuming you have a reference to the newly created user
+    tracks: [], // Initialize tracks array to be empty for now
+    // Add imageUrl if needed
+  });
+
+  // Save the "likedTracks" playlist to the database
+  await likedTracksPlaylist.save();
+
+  // Push the "likedTracks" playlist to the user's playlists array
+  newUser.playlists.push(likedTracksPlaylist);
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;
