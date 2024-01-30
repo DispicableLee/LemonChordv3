@@ -3,6 +3,7 @@ const LocalStrategy = require('passport-local');
 const bcrypt = require('bcryptjs');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+// const Playlist = require('../models/Playlist')
 const jwt = require('jsonwebtoken');
 const { secretOrKey } = require('./keys');
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
@@ -43,6 +44,11 @@ passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
 }));
 
 exports.loginUser = async function(user) {
+    await user.populate({
+      path: 'playlists',
+      select: '_id title',
+    })
+
   const userInfo = {
     _id: user._id,
     username: user.username,

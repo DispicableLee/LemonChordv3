@@ -89,7 +89,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
   await likedTracksPlaylist.save();
 
   // Push the "likedTracks" playlist to the user's playlists array
-  newUser.playlists.push(likedTracksPlaylist);
+  newUser.playlists.push(likedTracksPlaylist._id);
 
   bcrypt.genSalt(10, (err, salt) => {
     if (err) throw err;

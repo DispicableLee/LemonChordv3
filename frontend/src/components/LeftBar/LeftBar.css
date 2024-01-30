@@ -22,6 +22,34 @@
     gap: 20%;
 }
 
+.playlist-list-main{
+    /* border: 1px solid #e2e2e2; */
+    width: 100%;
+    height: 80%;
+    overflow: auto;
+    /* overflow: hidden; */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    align-items: center;
+    
+    /* gap: 5px; */
+}
+.playlist-list-main::-webkit-scrollbar{
+    display: none;
+}
+
+.playlist-list-item{
+    border-bottom: 1px solid #e2e2e2;
+    margin: 0;
+    padding: 0;
+    height: 20%;
+}
+
+.playlist-list-item p{
+    padding: 0;
+}
+
 .profile-button{
     border: 1px solid white;
     width: 40%;
@@ -32,4 +60,6 @@
     background-color: #e2e2e2;
     cursor: pointer;
 }
+
+
 

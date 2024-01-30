@@ -1,7 +1,24 @@
 #search-main{
-    border-bottom: 1px solid white;
-    /* height: 5vh; */
+    border: 1px solid white;
+    height: 3vh;
     width: 95%;
     padding: 10px;
     position: sticky;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#search-main input[type="text"]{
+    background: none;
+    border: 1px solid white;
+    height: 100%;
+}
+
+#search-main input[type="text"]:focus{
+    outline: none;
+}
+
+.reset-search:hover{
+    background-color: red;
 }

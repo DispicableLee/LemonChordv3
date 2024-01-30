@@ -8,13 +8,17 @@ import './TracksIndex.css'
 
 export default function TracksIndex(){
     const dispatch = useDispatch()
-    // const [tracks, setTracks] = useState(fetchedTracks || [])
     useEffect(()=>{
         dispatch(fetchTracks())
     },[dispatch])
     const fetchedTracks = useSelector(store=>store?.tracks)
-    // console.log(fetchedTracks)
-    const renderedTracks = fetchedTracks?.map((track)=>{
+    const [tracks, setTracks] = useState(fetchedTracks)
+
+
+    function resetSearch(){
+        setTracks(fetchedTracks)
+    }
+    const renderedTracks = tracks?.map((track)=>{
         return (
             <SingleTrack 
                 key={track._id} 
@@ -28,7 +32,11 @@ export default function TracksIndex(){
 
     return (
         <div id="tracks-index-main">
-            <SearchBar/>
+            <SearchBar 
+                tracks={tracks}
+                setTracks={setTracks}
+                fetchedTracks={fetchedTracks}
+                />
             <div>
                 {renderedTracks}
             </div>
