@@ -15,9 +15,6 @@ export default function TracksIndex(){
     const [tracks, setTracks] = useState(fetchedTracks)
 
 
-    function resetSearch(){
-        setTracks(fetchedTracks)
-    }
     const renderedTracks = tracks?.map((track)=>{
         return (
             <SingleTrack 
