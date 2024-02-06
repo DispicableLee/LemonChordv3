@@ -1,5 +1,6 @@
 // store/store.js
 import sessionReducer from './session';
+import usersReducer from './users';
 import tracksReducer from './tracks';
 import albumsReducer from './albums';
 import errors from './errors'
@@ -8,6 +9,7 @@ import thunk from 'redux-thunk';
 
 const rootReducer = combineReducers({
     session: sessionReducer,
+    users: usersReducer,
     tracks: tracksReducer,
     albums: albumsReducer,
     errors
