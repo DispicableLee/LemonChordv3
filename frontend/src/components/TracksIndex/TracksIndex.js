@@ -3,6 +3,7 @@ import SearchBar from "../SearchBar.js/SearchBar";
 import { useState, useEffect } from "react";
 import { fetchTracks } from "../../store/tracks";
 import { useDispatch, useSelector } from "react-redux";
+import { Suspense } from "react";
 import SingleTrack from "../SingleTrack/SingleTrack";
 import './TracksIndex.css'
 
@@ -35,7 +36,7 @@ export default function TracksIndex(){
                 fetchedTracks={fetchedTracks}
                 />
             <div>
-                {renderedTracks}
+                    {renderedTracks}
             </div>
         </div>
     )
