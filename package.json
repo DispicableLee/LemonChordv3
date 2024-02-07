@@ -23,6 +23,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "dev": "dotenv nodemon ./bin/www --inspect",
     "backend-install": "npm install --prefix backend",
     "backend": "npm run dev --prefix backend",
     "frontend-install": "npm install --prefix frontend",
