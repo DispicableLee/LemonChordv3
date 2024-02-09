@@ -18,13 +18,14 @@ export default function NavBar () {
 
 
 // ⁡⁣⁣=============== dark mode functionality =============================⁡
-  const isLight = useSelector(state => state.session.isLight)
+  const isLight = useSelector(state => state?.session?.isLight)
   const [hovered, setHovered] = useState(false)
   const [lightDark, setLightDark] = useState(isLight)
+
+
   function handleLighting(e){
-    e.preventDefault()
-    setLightDark(!lightDark)
-    dispatch(recieveLightDark(lightDark))
+    // e.preventDefault()
+    dispatch(recieveLightDark(!isLight))
   }
 
   const logoutUser = e => {
@@ -45,7 +46,7 @@ export default function NavBar () {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [dispatch]);
   
   return (
       <div>

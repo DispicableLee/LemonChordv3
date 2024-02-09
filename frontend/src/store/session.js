@@ -113,7 +113,8 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
 
 
 const initialState = {
-  user: undefined
+  user: undefined,
+  // isLight: true, // Set the default value based on your requirements
 };
 
 const sessionReducer = (state = initialState, action) => {

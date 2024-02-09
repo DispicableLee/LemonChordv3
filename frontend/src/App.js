@@ -33,7 +33,7 @@ export default function App() {
   const isLight = useSelector(store =>store.session.isLight)
 
   return loaded && (
-    <div id='app' className={isLight === true ? '' : 'dark-mode'}>
+    <div id='app' className={isLight ? '' : 'dark-mode'}>
       <NavBar/>
       {!loggedIn ? <SplashForm/> : <MainPage/>}
       {loggedIn && currentTrack && <AudioFooter/>}
