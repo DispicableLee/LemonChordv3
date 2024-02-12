@@ -10,6 +10,27 @@ router.get('/', function(req, res, next) {
     message: "GET /api/playlists"
   });
 });
+
+
+
+
+
+// GET a new playlist with an Id
+// http://localhost:8000/api/playlists/find/:playlistid
+router.get('/find/:playlistid', async function(req,res,next){
+  const playlist = await Playlist.findById(req.params.playlistid)
+  .populate({
+    path: 'tracks',
+    select: 'id title audioUrl'
+  })
+  if(playlist){
+    return res.status(200).send(playlist)
+  }else{
+    return res.status(400).send({})
+  }
+})
+
+
 // POST a new playlist
 // http://localhost:8000/api/playlists/newplaylist/:userid
 router.post('/newplaylist/:userid', async function(req,res,next){

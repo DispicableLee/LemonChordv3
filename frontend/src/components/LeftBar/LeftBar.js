@@ -3,9 +3,11 @@ import AlbumRoundedIcon from '@mui/icons-material/AlbumRounded';
 import AudiotrackRoundedIcon from '@mui/icons-material/AudiotrackRounded';
 import AddRoundedIcon from '@mui/icons-material/AddRounded';
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchOnePlaylist } from "../../store/playlists";
 import './LeftBar.css'
 export default function LeftBar() {
+  const dispatch = useDispatch()
   const currentUser = useSelector(store=>store?.session?.user)
   const currentUserPlaylists = useSelector(store=>store?.session?.user?.playlists)
   console.log(currentUserPlaylists)
@@ -13,10 +15,10 @@ export default function LeftBar() {
 
 
   function showPlaylistId(playlist){
-    console.log(playlist._id)
+    dispatch(fetchOnePlaylist(playlist._id))
   }
 
-  const playlistList = currentUserPlaylists.map((playlist)=>{
+  const playlistList = currentUserPlaylists?.map((playlist)=>{
     return (
       <div 
         key={playlist} 
@@ -33,15 +35,15 @@ export default function LeftBar() {
     <aside id="left-bar">
 
       <div className="album-track-index-icons">
-        <Link to="/albums" >
+        <Link to="/albums" className="left-bar-icon">
           <AlbumRoundedIcon/>
         </Link>
-        <Link to="/tracks">
+        <Link to="/tracks" className="left-bar-icon">
           <AudiotrackRoundedIcon />
         </Link>
       </div>
       <div className="playlist-list-main">
-        <Link to="/new_playlist_form">
+        <Link to="/new_playlist_form" className="left-bar-icon">
           <AddRoundedIcon/>
         </Link>
         {playlistList}
