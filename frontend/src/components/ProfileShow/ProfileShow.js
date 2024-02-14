@@ -18,7 +18,10 @@ export default function ProfileShow(){
     },[dispatch])
     return (
         <div id="profile-show-main">
-            <h1>{shownUser?.username}</h1>
+            <div className="profile-header">
+                <h1>{shownUser?.username}</h1>
+
+            </div>
         </div>
     )
 }
