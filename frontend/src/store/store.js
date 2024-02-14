@@ -3,6 +3,7 @@ import sessionReducer from './session';
 import usersReducer from './users';
 import tracksReducer from './tracks';
 import albumsReducer from './albums';
+import playlistsReducer from './playlists';
 import errors from './errors'
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
     users: usersReducer,
     tracks: tracksReducer,
     albums: albumsReducer,
+    playlists: playlistsReducer,
     errors
 });
 
