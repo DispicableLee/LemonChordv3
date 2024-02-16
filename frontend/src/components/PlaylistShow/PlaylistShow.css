@@ -1,0 +1,16 @@
+#playlist-show-main{
+    border: 1px solid #e2e2e2;
+    border-radius: 10px;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+.playlist-show-header{
+    border-bottom: 1px solid #e2e2e2;
+    border-radius: 5px;
+    width: 95%;
+    height: 10%;
+}

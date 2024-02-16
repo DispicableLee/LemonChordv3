@@ -51,7 +51,7 @@ export default function NavBar () {
   return (
       <div>
         <div id='nav-main'>
-          {loggedInUser &&  <h1 className='title-header'>LemonChord</h1>}
+          {loggedInUser &&  <h1 className='title-header'>LemonChord.v3</h1>}
           <div id="nav-auth">
             {loggedInUser &&             
               <button onClick={(e)=>logoutUser(e)}

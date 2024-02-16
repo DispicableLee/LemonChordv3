@@ -12,20 +12,17 @@ export default function LeftBar() {
   // console.log(currentUserPlaylists)
   const dummyPlaylists = [1,2,3,4,5,6,7,8]
 
-
-  function showPlaylistId(playlist){
-    dispatch(fetchOnePlaylist(playlist._id))
-  }
-
   const playlistList = currentUser?.playlists.map((playlist)=>{
     return (
-      <div 
-        key={playlist} 
+      <Link to={`/playlist-show/${playlist._id}`}
         className="playlist-list-item"
-        onClick={()=>showPlaylistId(playlist)}
       >
-        <p>{playlist.title}</p>
-      </div>
+        <div 
+          key={playlist} 
+        >
+          <p>{playlist.title}</p>
+        </div>
+      </Link>
     )
   })
 
