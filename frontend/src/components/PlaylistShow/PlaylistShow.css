@@ -1,11 +1,12 @@
 #playlist-show-main{
-    border: 1px solid #e2e2e2;
+    border-top: 1px solid #e2e2e2;
     border-radius: 10px;
     height: 90%;
     display: flex;
     flex-direction: column;
     align-items: center;
     padding: 10px;
+    margin-right: 10px;
 }
 
 .playlist-show-header{
@@ -13,4 +14,59 @@
     border-radius: 5px;
     width: 95%;
     height: 10%;
+    margin-bottom: 10px;
 }
+
+.add-new-song{
+    border-left: 1px solid #e2e2e2;
+    border-right: 1px solid #e2e2e2;
+    border-radius: 10px;
+    height: 20%;
+    width: 20%;
+    transition: all 0.5s ease-in-out;
+}
+
+.add-new-song:hover{
+    width: 80%;
+    cursor: pointer;
+}
+
+.tracks-index-slash-track-selection{
+    border-bottom: 1px solid white;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    height: 90%;
+    width: 95%;
+}
+
+#tracks-index-div{
+    border: 1px solid white;
+    width: 100%;
+    transition:all 0.2s ease-in-out
+}
+
+#tracks-index-div.aside{
+    width: 60%;
+}
+
+#track-selection-div{
+    border: 1px solid white;
+    width: 0%;
+    transition:all 0.2s ease-in-out
+}
+
+#track-selection-div.on{
+    width: 40%;
+}
+
+#track-option{
+    visibility: hidden;
+    /* transition: all 1.2s ease-in-out; */
+}   
+
+#track-option.select{
+    visibility: visible;
+}
+
+
