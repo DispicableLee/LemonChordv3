@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../../models/User');
 const Playlist = require('../../models/Playlist');
+const Track = require('../../models/Track')
 
 /* GET playlists listing. */
 // http://localhost:8000/api/playlists
@@ -48,5 +49,40 @@ router.post('/newplaylist/:userid', async function(req,res,next){
     return res.status(400).send({})
   }
 })
+
+// PUT songs into the playlist's 'tracks' array
+// http://localhost:8000/api/playlists/addsongs/:playlistid
+router.put('/addsongs/:playlistid', async function(req, res, next) {
+  try {
+    // Ensure that req.body.TrackIdsToAdd is an array
+    if (!Array.isArray(req.body.trackIdsToAdd)) {
+      return res.status(400).json({ error: 'trackIdsToAdd must be an array' });
+    }
+
+    // Update the playlist by adding the new track IDs to the existing tracks array
+    const updatedPlaylist = await Playlist.findByIdAndUpdate(
+      req.params.playlistid,
+      { $push: { tracks: { $each: req.body.trackIdsToAdd } } },
+      { new: true }
+    );
+
+    // Check if the playlist was found and updated
+    if (!updatedPlaylist) {
+      return res.status(404).json({ error: 'Playlist not found' });
+    }
+
+    // Send the updated playlist in the response
+    res.status(200).json(updatedPlaylist);
+  } catch (err) {
+    // Handle any unexpected errors
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+
+
+
 
 module.exports = router;

@@ -24,14 +24,13 @@ body, html {
 /* ==================================================================================================================== */
 /* ========================================= Global Application Styling =============================================== */
 /* ==================================================================================================================== */
-#app{
+#app, #app.dark-mode{
   height: 100vh;
   background: linear-gradient(180deg, #1BA2B1 9.38%, #7FC2CA 47.4%, #EEAF61 72.92%, #FB9062 86.46%, #EE5D6C 100%);
-  transition: transform 0.5s ease
+  transition: background 0.5s ease;
 }
 
 #app.dark-mode{ 
-  /* animation: slideOut 0.5s ease forwards; */
   background: linear-gradient(180deg, #6A0D83 0%, #80287D 20%, #954178 40%, #AB5D72 60%, #C47B6C 80%, #EEAF61 100%);
 }
 

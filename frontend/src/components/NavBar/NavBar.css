@@ -27,3 +27,13 @@
     gap: 20px;
     /* border: 1px solid white; */
 }
+
+
+.light-dark-mode-icon{
+    color: #e2e2e2;
+    transform: all 0.3s ease;
+}
+
+.light-dark-mode-icon:hover{
+    
+}

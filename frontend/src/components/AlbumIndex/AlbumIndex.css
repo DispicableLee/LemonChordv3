@@ -5,10 +5,11 @@
 }
 
 #albums-index-container{
-    border: 1px solid white;    
+    /* border: 1px solid white;     */
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    gap: 25px;
 }
 
 

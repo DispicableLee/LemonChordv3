@@ -61,16 +61,8 @@ export default function NavBar () {
                 </button>
             }
             <WbSunnyRoundedIcon
-              icon="ph:sun-thin" 
-              color= {hovered ? "#6a0d83" : "#e2e2e2"} 
-              width="70" 
-              height="70" 
-              onMouseOver={()=>setHovered(true)}
-              onMouseLeave={()=>setHovered(false)}
+              className='light-dark-mode-icon'
               onClick={handleLighting}
-              style={{
-                transition: 'color 0.3s ease'
-              }}
               />
           </div>
         </div>

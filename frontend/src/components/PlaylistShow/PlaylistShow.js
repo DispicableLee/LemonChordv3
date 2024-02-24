@@ -13,21 +13,21 @@ export default function PlaylistShow(){
     const shownPlaylist = useSelector(store=>store?.playlists?.shownPlaylist)
     const allTracks = useSelector(store=>store?.tracks)
     const [trackSelect, setTrackSelect] = useState(false)
-    const [addedTracks, setAddedTracks] = useState([])
+    const [trackIdsToAdd, settrackIdsToAdd] = useState([])
     useEffect(()=>{
         dispatch(fetchOnePlaylist(id))
         dispatch(fetchTracks())
-        // console.log(addedTracks)
+        // console.log(trackIdsToAdd)
     }, [dispatch])
 
     useEffect(()=>{
-        console.log(addedTracks)
-    }, [addedTracks])
+        console.log(trackIdsToAdd)
+    }, [trackIdsToAdd])
 
 
-    function handleAddedTracks(trackId){
-        setAddedTracks([...addedTracks, trackId])
-        // console.log(addedTracks)
+    function handletrackIdsToAdd(trackId){
+        settrackIdsToAdd([...trackIdsToAdd, trackId])
+        // console.log(trackIdsToAdd)
     }
 
 
@@ -35,7 +35,7 @@ export default function PlaylistShow(){
         return (
             <div id="track-option"
                 className={trackSelect ? "select" : ""}
-                onClick={()=>handleAddedTracks(track._id)}
+                onClick={()=>handletrackIdsToAdd(track._id)}
             >
                 <h3>{track.title}</h3>
             </div>
