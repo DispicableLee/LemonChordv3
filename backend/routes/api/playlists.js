@@ -21,7 +21,15 @@ router.get('/find/:playlistid', async function (req, res, next){
   const playlist = await Playlist.findById(req.params.playlistid)
   .populate({
     path: 'tracks',
-    select: '_id title audioUrl'
+    select: '_id title audioUrl',
+    populate: {
+      path: 'album',
+      select: '_id title imageUrl'
+    },
+    populate: {
+      path: 'uploader',
+      select: '_id username'
+    }
   })
   if(playlist){
     return res.status(200).send(playlist)

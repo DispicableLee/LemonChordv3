@@ -5,6 +5,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import {fetchTracks} from "../../store/tracks"
 import { fetchOnePlaylist } from "../../store/playlists";
+import SingleTrack from "../SingleTrack/SingleTrack";
 import './PlaylistShow.css'
 
 export default function PlaylistShow(){
@@ -24,6 +25,21 @@ export default function PlaylistShow(){
         console.log(trackIdsToAdd)
     }, [trackIdsToAdd])
 
+
+
+
+
+    const renderedPlaylistTracks = shownPlaylist?.tracks.map((track)=>{
+        return (
+            <SingleTrack 
+                key={track._id} 
+                title={track.title}
+                audioUrl = {track.audioUrl}
+                uploader = {track.uploader}
+                album = {track.album}
+            />
+        )
+    })
 
     function handletrackIdsToAdd(trackId){
         settrackIdsToAdd([...trackIdsToAdd, trackId])
@@ -57,7 +73,7 @@ export default function PlaylistShow(){
                 <div id="tracks-index-div"
                     className={trackSelect ? "aside" : ""}
                 >
-
+                    {renderedPlaylistTracks}
                 </div>
                 <div id="track-selection-div" 
                     className={trackSelect ? "on" : ""}
