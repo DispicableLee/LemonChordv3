@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import AlbumCard from "./AlbumCard";
-import { fetchAlbums, uploadNewAlbum } from "../../store/albums";
+import { fetchAlbums, uploadNewAlbum, clearAlbumErrors } from "../../store/albums";
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import "./AlbumIndex.css"
@@ -17,6 +17,7 @@ export default function AlbumIndex(){
     const allAlbums = useSelector(store=>store?.albums?.all)
     // console.log(allAlbums)
     useEffect(()=>{
+        dispatch(clearAlbumErrors())
         dispatch(fetchAlbums())
     },[dispatch])
 
