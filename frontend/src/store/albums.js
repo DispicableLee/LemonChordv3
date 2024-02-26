@@ -80,7 +80,8 @@ export const uploadNewAlbum = (albumFormData) => async dispatch =>{
         // You might want to dispatch a fetchAlbums action to update the list of albums
         dispatch(recieveNewAlbum(data));
     }catch (error) {
-        console.error('Error creating new album', error);
+        const res = await error.json()
+        return dispatch(recieveErrors(res.errors))
     }
 }
 
@@ -88,7 +89,7 @@ export const uploadNewAlbum = (albumFormData) => async dispatch =>{
 // ⁡⁢⁣⁢================== errors =========================⁡⁡
 
 
-const RECIEVE_ALBUM_ERRORS = "albums/RECEIVE_TRACK_ERRORS";
+const RECIEVE_ALBUM_ERRORS = "albums/RECEIVE_ALBUM_ERRORS";
 function recieveErrors(errors){
     return {
         type: RECIEVE_ALBUM_ERRORS,
