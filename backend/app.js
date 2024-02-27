@@ -35,10 +35,9 @@ if (!isProduction) {
 }
 
 app.use(cors({
-  origin: 'https://lemon-chordv3-oy5lj9pfp-dispicablelee.vercel.app',
+  origin: ["https://lemon-chordv3-oy5lj9pfp-dispicablelee.vercel.app"],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-  credentials: true,
-  optionsSuccessStatus: 204,
+  credentials: true
 }));
 
 
