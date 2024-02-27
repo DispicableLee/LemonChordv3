@@ -43,7 +43,6 @@ export default function PlaylistShow(){
 
     function handletrackIdsToAdd(trackId){
         settrackIdsToAdd([...trackIdsToAdd, trackId])
-        // console.log(trackIdsToAdd)
     }
 
 
@@ -60,26 +59,37 @@ export default function PlaylistShow(){
 
     return (
         <div id="playlist-show-main">
+
             <div className="playlist-show-header">
                 <h2>{shownPlaylist?.title}</h2>
+                <h4>{shownPlaylist?.tracks?.length} tracks</h4>
             </div>
+
             <div className="add-new-song"
                 onClick={()=>setTrackSelect(!trackSelect)}
             >
                 <h2>Add Song(s)</h2>
             </div>
-            <div                                                className="tracks-index-slash-track-selection"
-            >
+            
+            <div className="tracks-index-slash-track-selection">
                 <div id="tracks-index-div"
                     className={trackSelect ? "aside" : ""}
                 >
                     {renderedPlaylistTracks}
                 </div>
+
                 <div id="track-selection-div" 
                     className={trackSelect ? "on" : ""}
                 >   
                     {tracksToSelect}
+
+                    <button
+                        className={trackSelect ? "select" : ""}
+                    >
+                        Done
+                    </button>
                 </div>
+
             </div>
         </div>
     )

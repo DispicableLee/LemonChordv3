@@ -15,20 +15,29 @@
     width: 95%;
     height: 10%;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .add-new-song{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     border-left: 1px solid #e2e2e2;
     border-right: 1px solid #e2e2e2;
     border-radius: 10px;
     height: 20%;
-    width: 20%;
-    transition: all 0.5s ease-in-out;
+    width: 80%;
+    transition: all 0.3s ease-in-out;
 }
 
 .add-new-song:hover{
-    width: 80%;
-    cursor: pointer;
+    border-width: 3px;
+    /* box-shadow: inset; */
+    cursor: pointer; 
 }
 
 .tracks-index-slash-track-selection{
@@ -62,10 +71,25 @@
 
 #track-option{
     visibility: hidden;
-    /* transition: all 1.2s ease-in-out; */
+    
 }   
-
 #track-option.select{
+    padding: 5px;
+    visibility: visible;
+    border-bottom: 1px solid white;
+    transition: all 0.2s ease-in-out;
+}
+
+#track-option.select:hover{
+    border-width: 3px;
+    cursor: pointer;
+}
+
+button{
+    visibility: hidden;
+}
+
+button.select{
     visibility: visible;
 }
 
