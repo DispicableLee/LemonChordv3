@@ -34,6 +34,13 @@ if (!isProduction) {
   app.use(cors());
 }
 
+app.use(cors({
+  origin: 'https://lemon-chordv3.vercel.app',
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  credentials: true,
+  optionsSuccessStatus: 204,
+}));
+
 
 
 // Set the _csrf token and create req.csrfToken method to generate a hashed
