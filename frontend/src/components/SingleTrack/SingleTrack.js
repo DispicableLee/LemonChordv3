@@ -4,9 +4,8 @@ import { useState } from "react"
 import { recieveCurrentTrack } from "../../store/session"
 import './SingleTrack.css'
 
-export default function SingleTrack({title, audioUrl, uploader, album}){
+export default function SingleTrack({title, audioUrl, uploader, album, style}){
     const dispatch = useDispatch()
-    const [isPlayButtonActive, setIsPlayButtonActive] = useState(false)
 
 
 
@@ -30,6 +29,7 @@ export default function SingleTrack({title, audioUrl, uploader, album}){
     return (
         <div id="single-track-main"
             onClick={setCurrentTrack}
+            style={style}
         >
             <div className="play-button">
 

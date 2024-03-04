@@ -75,11 +75,12 @@ router.post('/newplaylist/:userid', validatePlaylistInput, async function(req,re
 // http://localhost:8000/api/playlists/addsongs/:playlistid
 router.put('/addsongs/:playlistid', async function(req, res, next) {
   try {
+    debugger
     // Ensure that req.body.TrackIdsToAdd is an array
     if (!Array.isArray(req.body.trackIdsToAdd)) {
       return res.status(400).json({ error: 'trackIdsToAdd must be an array' });
     }
-
+    debugger
     // Update the playlist by adding the new track IDs to the existing tracks array
     const updatedPlaylist = await Playlist.findByIdAndUpdate(
       req.params.playlistid,

@@ -45,9 +45,18 @@
 
 .playlist-list-item{
     border-bottom: 1px solid #e2e2e2;
+    border-radius: 5px;
     margin: 0;
     padding: 0;
     height: 20%;
+    text-decoration: none;
+    color: #e2e2e2;
+    transition: all 0.3s ease-in-out;
+    padding: 2px;
+}
+
+.playlist-list-item:hover{
+    box-shadow: 3px 3px 3px 0px #e2e2e2;
 }
 
 .playlist-list-item p{

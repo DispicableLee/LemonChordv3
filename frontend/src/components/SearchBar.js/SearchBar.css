@@ -1,5 +1,5 @@
 #search-main{
-    border: 1px solid white;
+    /* border: 1px solid white; */
     height: 3vh;
     width: 95%;
     padding: 10px;
@@ -11,12 +11,20 @@
 
 #search-main input[type="text"]{
     background: none;
-    border: 1px solid white;
+    border:none;
+    outline: none;
     height: 100%;
+    color: #e2e2e2;
+    transition: border 0.2s ease-out;
+}
+#search-main input[type="text"]::placeholder{
+    color: #e2e2e2;
 }
 
 #search-main input[type="text"]:focus{
     outline: none;
+    border-bottom: 1px solid #e2e2e2;
+    width: 100%;
 }
 
 .reset-search:hover{

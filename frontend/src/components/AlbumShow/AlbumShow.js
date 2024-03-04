@@ -19,7 +19,7 @@ export default function AlbumShow({}){
     },[dispatch])
     
 
-    const renderedAlbumTracks = shownAlbum?.tracks?.map((track)=>{
+    const renderedAlbumTracks = shownAlbum?.tracks?.map((track, index)=>{
         return (
             <SingleTrack 
                 key={track?._id} 
@@ -31,6 +31,8 @@ export default function AlbumShow({}){
                     title,
                     _id
                 }}
+                className="single-track-main"
+                style={{ animationDelay: `${index * 0.1}s` }}
             />
         )
     })
@@ -41,11 +43,20 @@ export default function AlbumShow({}){
 
     return (
         <div id="album-show-main">
-            <div className="album-show-info">
-                <img src={imageUrl}/>
-                <h1>Album Show</h1>
+            <div className="album-show-header">
+                <div className="album-show-info">
+                    <img src={imageUrl}/>
+                    <h2>{title}</h2>
+                </div>
+
+                <div className="remove-album-hover">
+                    X
+                </div>
+
+
 
             </div>
+
             {renderedAlbumTracks}
         </div>
     )

@@ -57,16 +57,15 @@ function recieveTracksInPlaylist(updatedPlaylist){
 
 export const addSongsToPlaylist = (playlistId, trackIdsToAdd) => async dispatch=>{
     try{    
+        debugger
         const updatedPlaylist = await jwtFetch(`/api/playlists/addsongs/${playlistId}`, {
             method: "PUT",
             headers:{
                 "Content-Type": "application/json"
             },
-            body: {
-                trackIdsToAdd
-            }
+            body: JSON.stringify({trackIdsToAdd})
         })
-
+        debugger
         dispatch(recieveTracksInPlaylist(updatedPlaylist))
     }catch(err){
         console.log("error adding songs to playlist")

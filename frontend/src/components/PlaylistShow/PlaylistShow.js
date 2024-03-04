@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useDispatch } from "react-redux";
 import {fetchTracks} from "../../store/tracks"
-import { fetchOnePlaylist } from "../../store/playlists";
+import { fetchOnePlaylist,addSongsToPlaylist } from "../../store/playlists";
 import SingleTrack from "../SingleTrack/SingleTrack";
 import './PlaylistShow.css'
 
@@ -29,7 +29,7 @@ export default function PlaylistShow(){
 
 
 
-    const renderedPlaylistTracks = shownPlaylist?.tracks.map((track)=>{
+    const renderedPlaylistTracks = shownPlaylist?.tracks.map((track, index)=>{
         return (
             <SingleTrack 
                 key={track._id} 
@@ -37,6 +37,7 @@ export default function PlaylistShow(){
                 audioUrl = {track.audioUrl}
                 uploader = {track.uploader}
                 album = {track.album}
+                style={{ animationDelay: `${index * 0.1}s` }}
             />
         )
     })
@@ -84,7 +85,9 @@ export default function PlaylistShow(){
                     {tracksToSelect}
 
                     <button
+                        id="track-add-button"
                         className={trackSelect ? "select" : ""}
+                        onClick={()=>dispatch(addSongsToPlaylist(shownPlaylist?._id, trackIdsToAdd))}
                     >
                         Done
                     </button>

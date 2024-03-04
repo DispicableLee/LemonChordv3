@@ -8,6 +8,17 @@
   src: url('../style/Fonts/Quicksand-Regular.ttf');
 }
 
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 
 
 #single-track-main{
@@ -22,6 +33,8 @@
     border-radius: 0px 0px 0px 15px;
     border-bottom: 1px solid rgba(226, 226, 226, 0.75);
     transition: all 0.3s ease;
+    animation: fadeIn 0.5s ease-out;
+    
     
 }
 
