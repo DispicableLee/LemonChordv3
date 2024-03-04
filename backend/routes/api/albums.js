@@ -5,7 +5,7 @@ const validateAlbumInput = require('../../validations/albums');
 const { validationResult } = require('express-validator');
 
 
-/* GET ALL ALBUMS */
+// ================================ GET all albums ================================
 // http://localhost:8000/api/albums
 router.get('/', async function(req, res, next) {
   try{
@@ -20,6 +20,10 @@ router.get('/', async function(req, res, next) {
   }
 });
 
+
+
+// ========================================= GET album by id ==========================
+// http://localhost:8000/api/albums/:albumid
 router.get('/:albumId', async function(req,res,next){
   try{
     const album = await Album.findById(req.params.albumId)
@@ -39,7 +43,7 @@ router.get('/:albumId', async function(req,res,next){
 })
 
 
-// POST an album
+// ================================= POST an album ===============================
 // http://localhost:8000/api/albums
 router.post('/', validateAlbumInput, async (req, res, next) => {
     try {
@@ -59,6 +63,30 @@ router.post('/', validateAlbumInput, async (req, res, next) => {
         return res.status(500).json({ error: "internal server error" });
     }
 });
+
+
+// DELETE an album
+// http://localhost:8000/api/albums/delete/:albumid
+
+router.delete('/delete/:albumid', async (req, res, next)=>{
+  try{
+    const album = await Album.findById(req.params.albumid)
+    if(album){
+      const deletedAlbum = await Album.findByIdAndDelete(req.params.albumid)
+      if(deletedAlbum){
+        return res.status(200).send({message: "Album deleted successfully"})
+      }else{
+        return res.status(500).send({message: "failed to delete Album"})
+      }
+    }else{
+      return res.status(404).send({message: "Album not found"})
+    }
+  }catch(err){
+
+  }
+})
+
+
 
 
 

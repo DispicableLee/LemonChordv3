@@ -86,6 +86,30 @@ export const uploadNewAlbum = (albumFormData) => async dispatch =>{
 }
 
 
+
+
+// ⁡⁣⁢⁣========================= DELETE ALBUM ACTIONS =========================⁡
+
+const DELETE_ALBUM = "albums/DELETE_ALBUM"
+function removeAlbum(albumId){
+    return {
+        type: DELETE_ALBUM,
+        albumId
+    }
+}
+export const deleteAlbum = (albumId) => async dispatch=>{
+    try{    
+        await jwtFetch(`/api/albums/delete/${albumId}`,{
+            method: "DELETE"
+        })
+        dispatch(removeAlbum(albumId))
+    }catch(err){
+        const res = await err.json()
+        return dispatch(recieveErrors(res.errors))
+    }
+}
+
+
 // ⁡⁢⁣⁢================== errors =========================⁡⁡
 
 
@@ -124,6 +148,9 @@ const albumsReducer = (state={}, action)=>{
         case RECIEVE_NEW_ALBUM:
             const updatedAllAlbums = newState.all ? [...newState.all, action.album] : [action.album];
             return { ...newState, all: updatedAllAlbums };
+        case DELETE_ALBUM:
+            delete newState[action.albumId]
+            return newState
         default:
             return newState
     }
