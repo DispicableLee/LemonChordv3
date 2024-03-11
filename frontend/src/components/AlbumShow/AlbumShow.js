@@ -11,6 +11,7 @@ export default function AlbumShow({}){
     const {id} = useParams()
     const shownAlbum = useSelector(store=>store?.albums?.shownAlbum)
     const [removeHover, setRemoveHover] = useState(false)
+    const [deleteAlbumModal, setDeleteAlbumModal] = useState(false)
     let imageUrl = shownAlbum?.imageUrl
     let title = shownAlbum?.title
     let _id = shownAlbum?._id
@@ -42,6 +43,7 @@ export default function AlbumShow({}){
 
 
 
+
     return (
         <div id="album-show-main">
             <div className="album-show-header">
@@ -55,15 +57,29 @@ export default function AlbumShow({}){
                     onMouseEnter={()=>setRemoveHover(true)}
                     onMouseLeave={()=>setRemoveHover(false)}
                 >
-                    <h3>Delete Album</h3>
+                    <h3
+                        onClick={()=>setDeleteAlbumModal(true)}
+                    >
+                        Delete Album
+                    </h3>
                 </div>
                 <div className="remove-album-hover"
                     onMouseEnter={()=>setRemoveHover(true)}
                     onMouseLeave={()=>setRemoveHover(false)}
                 >
-                    <h3>X</h3>
+                    <h3 className="hover-button-text">X</h3>
                 </div>
-
+                {deleteAlbumModal 
+                ?             
+                    <div id="delete-album-modal">
+                        <h3 className="cancel-delete-text"
+                            onClick={()=>setDeleteAlbumModal(false)}
+                        >
+                            Cancel
+                        </h3>
+                    </div> 
+                : <></>
+                }
 
 
             </div>
