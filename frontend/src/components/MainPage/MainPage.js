@@ -15,6 +15,7 @@ function MainPage() {
     <div id="main-page-main">
       <LeftBar/>
       <div id='main-feed-container'>
+        {/* <h1>hi</h1> */}
         <Switch>
           <Route exact path="/albums" component={AlbumIndex}/>
           <Route exact path="/tracks" component={TracksIndex}/>

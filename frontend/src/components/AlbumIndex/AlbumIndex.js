@@ -22,7 +22,7 @@ export default function AlbumIndex(){
     },[dispatch])
 
 
-    const renderedAlbums = allAlbums?.map((album)=>{
+    const renderedAlbums = allAlbums?.map((album, index)=>{
         return(
             <AlbumCard
                 key={album._id}
@@ -30,6 +30,7 @@ export default function AlbumIndex(){
                 imageUrl = {album.imageUrl}
                 title={album.title}
                 uploader = {album.uploader}
+                style={{ animationDelay: `${index * 0.1}s` }}
             />
         )
     })
@@ -54,11 +55,16 @@ export default function AlbumIndex(){
         <div id='album-index-main'>
 
 
-            <h1>album index</h1>
-            <div id="new-album-modal"
-                className={newAlbumModal ? '' : 'inactive'}
-            >
-                <img src={newAlbumImage}/>
+            <h1
+                className="subtitle-header"
+            >Albums</h1>
+
+            { newAlbumModal 
+            ? 
+            <div id="new-album-modal">
+                <button
+                    onClick={()=>setNewAlbumModal(!newAlbumModal)}
+                >Close</button>
 
                 <form onSubmit={handleSubmitAlbum}>
                     <h1>Create New Album</h1>
@@ -75,16 +81,19 @@ export default function AlbumIndex(){
                     <input type="Submit"/>
 
                 </form>
-
             </div>
-            <div id='albums-index-container'>
+            :
+             <></>}
+
+
+            <div id='albums-index-container' className={newAlbumModal ? "inactive" : ""}>
                 <div className="new-album-modal-switch"
                     onClick={()=>{
                         
                         setNewAlbumModal(!newAlbumModal)
                     }}
                 >
-                    <h2>create neww Album</h2>
+                    <h1>+</h1>
                 </div>
                 {renderedAlbums}
 

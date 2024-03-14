@@ -26,7 +26,7 @@ body, html {
 /* ==================================================================================================================== */
 #app, #app.dark-mode{
   height: 100vh;
-  background: linear-gradient(180deg, #1BA2B1 9.38%, #7FC2CA 47.4%, #EEAF61 72.92%, #FB9062 86.46%, #EE5D6C 100%);
+  background: linear-gradient(180deg, #1BA2B1 40%, #7FC2CA 65%, #EEAF61 85%, #FB9062 95%, #EE5D6C 100%);
   transition: background 0.5s ease;
 }
 
@@ -42,13 +42,24 @@ body, html {
   letter-spacing: 1px;
   margin: 0;
   /* word-spacing: 1em */
-
 }
 
 .subtitle-header{
+  color: #D86F49;
+  font-size: 60px;
+  font-family: 'Smooch';
+  text-shadow: 0px 2px 2px #1BA2B1;
+  letter-spacing: 1px;
+  margin: 0;
+  /* -webkit-text-stroke: 0.1px #e2e2e2; */
+  /* -webkit-text-stroke-width: thin; */
+
+}
+
+/* .subtitle-header{
   font-family: "Quicksand Medium";
   color: #e2e2e2;
-}
+} */
 
 
 h2, h3, h4, h5{
@@ -94,7 +105,7 @@ h2, h3, h4, h5{
     width: 50%;
     font-size: 30px;
     letter-spacing: 2px;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
 }
 
 .session-submit:enabled{
@@ -105,8 +116,10 @@ h2, h3, h4, h5{
     -webkit-text-fill-color: transparent;
 }
 
-.session-submit:hover{
-
+.session-submit:enabled:hover{
+  -webkit-text-fill-color: linear-gradient(180deg, #D86F49 0%, #C47B6C 61.46%, #E2E2E2 99.99%, rgba(255, 255, 255, 0.00) 100%);
+  color: linear-gradient(180deg, #D86F49 0%, #C47B6C 61.46%, #E2E2E2 99.99%, rgba(255, 255, 255, 0.00) 100%);
+  background: linear-gradient(180deg, #1BA2B1 0%, rgba(251, 216, 127, 0.75) 99.99%, rgba(226, 226, 226, 0.00) 100%);
 }
 
 /* =============================================================================================== */

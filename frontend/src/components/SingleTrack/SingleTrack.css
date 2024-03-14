@@ -43,15 +43,17 @@
   border-color: #e2e2e2;
 }
 .play-button{
-    width: 3%;
-    height: 40%;
-    flex-shrink: 0;
-    border-radius: 90px;
-    background: linear-gradient(90deg, #1BA2B1 0%, rgba(251, 216, 127, 0.57) 100%);
+  width: 3%;
+  height: 40%;
+  flex-shrink: 0;
+  border-radius: 90px;
+  background: linear-gradient(90deg, #1BA2B1 0%, rgba(251, 216, 127, 0.57) 100%);
+  transition: all 0.5s ease;
 }
 
 .play-button:hover{
-    background: linear-gradient(90deg,#6A0D83, #80287D, #954178, #AB5D72, #C47B6C, #EEAF61)
+  transition: all 0.5s ease;
+  background: linear-gradient(90deg,#6A0D83, #80287D, #954178, #AB5D72, #C47B6C, #EEAF61)
 }
 
 .track-title{

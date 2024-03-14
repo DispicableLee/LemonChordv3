@@ -10,7 +10,6 @@ export default function LeftBar() {
   const dispatch = useDispatch()
   const currentUser = useSelector(store=>store?.session?.user)
   // console.log(currentUserPlaylists)
-  const dummyPlaylists = [1,2,3,4,5,6,7,8]
 
   const playlistList = currentUser?.playlists.map((playlist)=>{
     return (
@@ -38,8 +37,9 @@ export default function LeftBar() {
           <AudiotrackRoundedIcon />
         </Link>
       </div>
+
       <div className="playlist-list-main">
-        <Link to="/new_playlist_form" className="link-icon">
+        <Link to="/new_playlist_form" className="link-icon-add">
           <AddRoundedIcon/>
         </Link>
         {playlistList}

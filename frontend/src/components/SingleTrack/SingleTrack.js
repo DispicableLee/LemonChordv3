@@ -8,8 +8,6 @@ export default function SingleTrack({title, audioUrl, uploader, album, style}){
     const dispatch = useDispatch()
 
 
-
-
     function setCurrentTrack(){
         let trackObj = {
             title,
@@ -28,10 +26,12 @@ export default function SingleTrack({title, audioUrl, uploader, album, style}){
 
     return (
         <div id="single-track-main"
-            onClick={setCurrentTrack}
+            // onClick={setCurrentTrack}
             style={style}
         >
-            <div className="play-button">
+            <div className="play-button"
+                onClick={setCurrentTrack}
+            >
 
             </div>
                 <div className="title-artist">

@@ -12,7 +12,8 @@
 }
 
 .album-track-index-icons{
-    border: 1px solid #e2e2e2;
+    border: 1px solid rgba(226, 226, 226, 0.50);
+    border-top-right-radius: 15px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +25,16 @@
 
 .link-icon{
     color: #e2e2e2;
+}
+
+.link-icon-add{
+    color: #e2e2e2;
+    transition: all 0.5s ease;
+}
+
+.link-icon-add:hover{
+    border-bottom: 1px solid rgba(226, 226, 226, 0.50);
+    cursor: pointer;
 }
 
 .playlist-list-main{

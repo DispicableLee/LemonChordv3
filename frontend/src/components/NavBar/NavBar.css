@@ -7,10 +7,6 @@
     /* border: 1px solid white; */
     height: 7vh;
 }
-/* 
-#nav-main button{
-    height: 40%;
-} */
 
 #nav-main h1{
     align-items: center;
@@ -31,9 +27,11 @@
 
 .light-dark-mode-icon{
     color: #e2e2e2;
-    transform: all 0.3s ease;
+    transition: color 0.7s ease;
 }
 
 .light-dark-mode-icon:hover{
-    
+    color: #F5C400;
+    cursor: pointer;
+
 }

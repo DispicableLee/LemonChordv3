@@ -1,12 +1,14 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
-import { fetchOneAlbum } from "../../store/albums";
+import { fetchOneAlbum, deleteAlbum, fetchAlbums } from "../../store/albums";
 import SingleTrack from "../SingleTrack/SingleTrack";
 import './AlbumShow.css'
 
 export default function AlbumShow({}){
+    const history = useHistory()
     const dispatch = useDispatch()
     const {id} = useParams()
     const shownAlbum = useSelector(store=>store?.albums?.shownAlbum)
@@ -40,13 +42,15 @@ export default function AlbumShow({}){
     })
 
 
-
+    function handleDeleteAlbum(id){
+        dispatch(deleteAlbum(id))
+    }
 
 
 
     return (
-        <div id="album-show-main">
-            <div className="album-show-header">
+        <div id="album-show-main" >
+            <div className={deleteAlbumModal ? "album-show-header-modal" : "album-show-header"}>
                 <div className="album-show-info">
                     <img src={imageUrl}/>
                     <h2>{title}</h2>
@@ -69,22 +73,33 @@ export default function AlbumShow({}){
                 >
                     <h3 className="hover-button-text">X</h3>
                 </div>
-                {deleteAlbumModal 
-                ?             
-                    <div id="delete-album-modal">
-                        <h3 className="cancel-delete-text"
-                            onClick={()=>setDeleteAlbumModal(false)}
-                        >
-                            Cancel
-                        </h3>
-                    </div> 
-                : <></>
-                }
 
 
             </div>
+                {deleteAlbumModal 
+                ?             
+                    <div id="delete-album-modal">
+                        <h3>You are about to delete this album. Are you sure?</h3>
+                        <button
+                            onClick={()=>{
+                                handleDeleteAlbum(id)
+                                history.push("/albums")
+                            }}
+                        >
+                            Yes, Delete this Album
+                        </button>
+                        <button className="cancel-delete-button"
+                            onClick={()=>setDeleteAlbumModal(false)}
+                        >
+                            Cancel
+                        </button>
+                    </div> 
+                : <></>
+                }
+            <div className={deleteAlbumModal ? "track-display-modal" : "track-display"}>
+                {renderedAlbumTracks}
 
-            {renderedAlbumTracks}
+            </div>
         </div>
     )
 }

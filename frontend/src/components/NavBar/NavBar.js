@@ -63,7 +63,7 @@ export default function NavBar () {
             <WbSunnyRoundedIcon
               className='light-dark-mode-icon'
               onClick={handleLighting}
-              />
+            />
           </div>
         </div>
       </div>
