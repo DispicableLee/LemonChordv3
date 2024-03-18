@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import './NewPlaylistForm.css'
 
 export default function NewPlaylistForm(){
-    const [trackSelect, setTrackSelect] = useState(false)
-
+    const [trackSelectModal, setTrackSelectModal] = useState(false)
+    const [playlistTitle, setPlaylistTitle] = useState("")
 
 
 
@@ -14,19 +14,36 @@ export default function NewPlaylistForm(){
 
     return (
         <div id="new-playlist-form-main">
-            <h1>Playlist Creation</h1>
-            <form id="playlist-form" className="form">
+            {trackSelectModal ? <h1>Select Playlist Tracks</h1> : <h1>Playlist Creation</h1>}
+            <form id="playlist-form" 
+                className={trackSelectModal ? "form-disabled" : "form"}
+                onSubmit={(e)=>{
+                    e.preventDefault()
+                    setTrackSelectModal(!trackSelectModal)
+                    // console.log(trackSelectModal)
+                }}
+            >
                 <input type="text"
-                    
+                    value={playlistTitle}
+                    onChange={(e)=>setPlaylistTitle(e.target.value)}
+                    placeholder="Title"
+                    className="session-form"
                 />
-                <div className="confirm-playlist-name"
-                    onClick={()=>setTrackSelect(!trackSelect)}
-                >
-                    <h2>
-                        Confirm Name
-                    </h2>
-                </div>
+                <input type="submit"
+                    disabled={!playlistTitle}
+                    value="Confirm Playlist Title"
+                    className="playlist-title-submit"
+                />
             </form>
+            {trackSelectModal 
+            ?
+                <div className="track-select-modal">
+
+
+                </div>
+            :
+                <></>
+            }
         </div>
     )
 }

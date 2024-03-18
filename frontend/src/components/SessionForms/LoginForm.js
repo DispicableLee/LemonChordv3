@@ -44,7 +44,7 @@ function LoginForm () {
           placeholder="Email"
           className='session-form'
         />
-      <div className="errors">{errors?.password}</div>
+      <div className="errors"><p>{errors?.password}</p></div>
         <input type="password"
           value={password}
           onChange={(e)=>setPassword(e.target.value)}

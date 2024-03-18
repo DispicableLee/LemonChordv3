@@ -45,6 +45,7 @@ export default function AlbumIndex(){
         }
 
         dispatch(uploadNewAlbum(newAlbumObj))
+        setNewAlbumModal(!newAlbumModal)
     }
 
 
