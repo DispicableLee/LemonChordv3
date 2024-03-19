@@ -1,12 +1,14 @@
 import React from "react";
 import { useEffect, useState } from 'react';
 import { fetchTracks } from "../../store/tracks";
+import { createOnePlaylist } from "../../store/playlists";
 import { useDispatch, useSelector } from "react-redux";
 import './NewPlaylistForm.css'
 
 export default function NewPlaylistForm(){
     const dispatch = useDispatch()
     const allTracks = useSelector(store=>store?.tracks)
+    const currentUserId = useSelector(store=>store?.session?.user?._id)
     const [trackSelectModal, setTrackSelectModal] = useState(false)
     const [playlistTitle, setPlaylistTitle] = useState("")
     const [trackIdsToAdd, setTrackIdsToAdd] = useState([])
@@ -20,6 +22,15 @@ export default function NewPlaylistForm(){
     useEffect(()=>{
         console.log(trackIdsToAdd)
     }, [trackIdsToAdd])
+
+    function handlePlaylistCreation(){
+        const playlistFormData = {
+            title: playlistTitle,
+            uploader: currentUserId,
+            tracks: trackIdsToAdd
+        }
+        dispatch(createOnePlaylist(currentUserId, playlistFormData))
+    }
 
 
     function handleTrackIdsToAdd(trackId){
@@ -72,18 +83,22 @@ export default function NewPlaylistForm(){
                         {allTracks.map((track) => (
                         <li key={track.id}
                             className="track-select-item-input"
+                            onClick={() => handleTrackIdsToAdd(track._id)}
                         >
                             <input
-                                
                                 type="checkbox"
                                 checked={trackIdsToAdd.includes(track._id)}
-                                onChange={() => handleTrackIdsToAdd(track._id)}
+                                
                             />
                             <label>{track.title}</label>
                         </li>
                         ))}
                     </ul>
-
+                    <div className="track-select-confirm"
+                        onClick={()=>handlePlaylistCreation()}
+                    >
+                        <h2>Confirm</h2>
+                    </div>
                 </div>
             :
                 <></>
