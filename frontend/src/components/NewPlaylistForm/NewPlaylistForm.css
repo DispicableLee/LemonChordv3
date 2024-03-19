@@ -49,7 +49,7 @@
 }
 
 
-@keyframes trackSelectModalFadeUp {
+@keyframes trackSelectModalFadeDown {
     0%{
         opacity: 0%;
         width: 0%;
@@ -74,5 +74,60 @@
     border: 1px solid #e2e2e2;
     /* border-bottom: 1px solid #e2e2e2; */
     border-radius: 5px;
-    animation: trackSelectModalFadeUp 1s ease;
+    animation: trackSelectModalFadeDown 1s ease-in-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+
+@keyframes fadeIn {
+    0%{
+        opacity: 0;
+    }
+    50%{
+        opacity: 0;
+    }
+    100%{
+        opacity: 100;
+    }
+}
+.close-track-select-modal{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 1px solid #e2e2e2;
+    /* border-radius: 5px; */
+    animation: fadeIn 0.2s ease-in-out;
+    width: 90%;
+    transition: all 0.2s ease;
+    padding: 5px;
+    color: #e2e2e2;
+}
+
+.close-track-select-modal:hover{
+    cursor: pointer;
+    background: #F15156;
+}
+
+
+
+.track-selection-ul{
+    border: 1px solid white;
+    width: 80%;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.track-select-item-input{
+
+}
+
+.track-select-item-input:hover{
+    border: 1px solid saddlebrown;
 }

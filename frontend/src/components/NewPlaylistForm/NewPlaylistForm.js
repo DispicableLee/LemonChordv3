@@ -1,15 +1,40 @@
 import React from "react";
 import { useEffect, useState } from 'react';
+import { fetchTracks } from "../../store/tracks";
 import { useDispatch, useSelector } from "react-redux";
 import './NewPlaylistForm.css'
 
 export default function NewPlaylistForm(){
+    const dispatch = useDispatch()
+    const allTracks = useSelector(store=>store?.tracks)
     const [trackSelectModal, setTrackSelectModal] = useState(false)
     const [playlistTitle, setPlaylistTitle] = useState("")
+    const [trackIdsToAdd, setTrackIdsToAdd] = useState([])
 
 
+    useEffect(()=>{
+        dispatch(fetchTracks())
+    },[dispatch])
 
 
+    useEffect(()=>{
+        console.log(trackIdsToAdd)
+    }, [trackIdsToAdd])
+
+
+    function handleTrackIdsToAdd(trackId){
+          // Check if the trackId is already in the trackIdsToAdd array
+        const index = trackIdsToAdd.indexOf(trackId);
+
+        // If the trackId is not in the array, add it; otherwise, remove it
+        if (index === -1) {
+            setTrackIdsToAdd([...trackIdsToAdd, trackId]);
+        } else {
+            // Create a new array without the selected trackId
+            const updatedTrackIds = [...trackIdsToAdd.slice(0, index), ...trackIdsToAdd.slice(index + 1)];
+            setTrackIdsToAdd(updatedTrackIds);
+        }
+    }
 
 
     return (
@@ -38,7 +63,26 @@ export default function NewPlaylistForm(){
             {trackSelectModal 
             ?
                 <div className="track-select-modal">
-
+                    <div className="close-track-select-modal"
+                        onClick={()=>setTrackSelectModal(!trackSelectModal)}
+                    >
+                        X
+                    </div>
+                    <ul className="track-selection-ul">
+                        {allTracks.map((track) => (
+                        <li key={track.id}
+                            className="track-select-item-input"
+                        >
+                            <input
+                                
+                                type="checkbox"
+                                checked={trackIdsToAdd.includes(track._id)}
+                                onChange={() => handleTrackIdsToAdd(track._id)}
+                            />
+                            <label>{track.title}</label>
+                        </li>
+                        ))}
+                    </ul>
 
                 </div>
             :
