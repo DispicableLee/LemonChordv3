@@ -3,9 +3,11 @@ import { useEffect, useState } from 'react';
 import { fetchTracks } from "../../store/tracks";
 import { createOnePlaylist } from "../../store/playlists";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
 import './NewPlaylistForm.css'
 
 export default function NewPlaylistForm(){
+    const history = useHistory()
     const dispatch = useDispatch()
     const allTracks = useSelector(store=>store?.tracks)
     const currentUserId = useSelector(store=>store?.session?.user?._id)
@@ -30,6 +32,7 @@ export default function NewPlaylistForm(){
             tracks: trackIdsToAdd
         }
         dispatch(createOnePlaylist(currentUserId, playlistFormData))
+        history.push("/albums")
     }
 
 

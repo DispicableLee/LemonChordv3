@@ -6,7 +6,7 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    padding: 2px;
+    /* margin: 3%; */
 }
 
 
@@ -15,5 +15,33 @@
     border-bottom: 1px solid #e2e2e2;
     border-radius: 10px;
     width: 98%;
-
+    padding: 1%;
+    margin: 1%;
 }
+
+.profile-content-main{
+    /* border: 1px solid #e2e2e2; */
+    width: 100%;
+    height: 90%;
+    /* padding: 2%; */
+}
+
+.song-upload-main{
+    border-radius: 5px;
+    height: 100%;
+    width: 25%;
+    padding: .5%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(180deg, #6A0D83 0%, #80287D 20%, #954178 40%, #AB5D72 60%, #C47B6C 80%, #EEAF61 100%);
+    box-shadow: 0px 0px 1px 1px #6A0D83
+}
+
+.song-upload-main h2{
+    color: bisque;
+    font-size: large;
+    text-decoration: underline;
+}
+

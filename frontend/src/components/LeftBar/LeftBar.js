@@ -6,6 +6,7 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchOnePlaylist } from "../../store/playlists";
 import './LeftBar.css'
+import { style } from "dom-helpers";
 export default function LeftBar() {
   const dispatch = useDispatch()
   const currentUser = useSelector(store=>store?.session?.user)
@@ -18,6 +19,7 @@ export default function LeftBar() {
       >
         <div 
           key={playlist} 
+          // className="playlist-list-item"
         >
           <p>{playlist.title}</p>
         </div>
@@ -30,19 +32,26 @@ export default function LeftBar() {
     <aside id="left-bar">
 
       <div className="album-track-index-icons">
+
+{/* ================ Album Index ============================= */}
         <Link to="/albums" className="link-icon">
           <AlbumRoundedIcon/>
         </Link>
+{/* ================ Track Index ============================= */}
         <Link to="/tracks" className="link-icon">
           <AudiotrackRoundedIcon />
         </Link>
+
+
       </div>
 
       <div className="playlist-list-main">
         <Link to="/new_playlist_form" className="link-icon-add">
           <AddRoundedIcon/>
         </Link>
-        {playlistList}
+        <div className="playlist-list">
+          {playlistList}
+        </div>
       </div> 
 
       <Link className="profile-button"
