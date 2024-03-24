@@ -16,7 +16,7 @@ const userSchema = new Schema({
   },
   tracks: [{
     type: Schema.Types.ObjectId,
-    ref: 'tracks',
+    ref: 'Track',
     required: true
   }],
   albums: [{

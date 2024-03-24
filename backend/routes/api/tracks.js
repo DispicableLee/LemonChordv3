@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const User = require('../../models/User')
 const Track = require('../../models/Track')
 const { requireUser } = require('../../config/passport');
-const validateTrackInput = require('../../validations/tracks')
+const validateTrackInput = require('../../validations/tracks');
+const { validationResult } = require('express-validator');
+const Album = require('../../models/Album');
 
 
 /* GET all tracks */
@@ -31,9 +33,21 @@ router.get('/', async (req, res, next) => {
 // POST a track
 // http://localhost:8000/api/tracks ====================
 router.post('/', validateTrackInput, async(req,res, next)=>{
-  const newTrack = new Track(req.body)
-  newTrack.save().catch((err) => console.log(err));
-  return res.status(200).send(newTrack);
+  try{
+    const errors = validationResult(req)
+    if(!errors.isEmpty()){
+      return res.status(400).json({errors: errors.array()})
+    }
+    const newTrack = new Track(req.body);
+    await newTrack.save()
+    return res.status(200).json(newTrack)
+  }catch(err){
+    console.error(err)
+    return res.status(400).json({errors: errors.array()})
+  }
+  // const newTrack = new Track(req.body)
+  // newTrack.save().catch((err) => console.log(err));
+  // return res.status(200).send(newTrack);
 })
 
 

@@ -6,6 +6,7 @@ const User = mongoose.model('User');
 const Playlist = require('../../models/Playlist')
 const passport = require('passport');
 
+
 const { loginUser, restoreUser } = require('../../config/passport');
 const { isProduction } = require('../../config/keys');
 
@@ -31,6 +32,11 @@ router.get('/getuser/:userid', async function(req, res, next){
     .populate({
       path: 'playlists',
       select: '_id title'
+    })
+    .populate({
+      path: 'tracks',
+      select: '_id title audioUrl album',
+      populate: { path: 'album', select: '_id title' }
     })
     return res.status(200).send(user)
   }catch(err){

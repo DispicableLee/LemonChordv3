@@ -11,9 +11,9 @@ const validateTrackInput = [
   check('audioUrl')
     .exists({ checkFalsy: true })
     .withMessage('track must have an audio Url'),
-  check('uploaderUrl')
-    .exists({ checkFalsy: true })
-    .withMessage('track must have an uploader'),
+  // check('uploaderUrl')
+  //   .exists({ checkFalsy: true })
+  //   .withMessage('track must have an uploader'),
 ];
 
 module.exports = validateTrackInput;
