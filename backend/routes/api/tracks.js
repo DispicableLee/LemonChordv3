@@ -31,16 +31,28 @@ router.get('/', async (req, res, next) => {
 });
 
 // POST a track
-// http://localhost:8000/api/tracks ====================
-router.post('/', validateTrackInput, async(req,res, next)=>{
+// http://localhost:8000/api/tracks/newtrack/:userid ====================
+router.post('/newtrack/:userid', validateTrackInput, async(req,res, next)=>{
   try{
     const errors = validationResult(req)
     if(!errors.isEmpty()){
       return res.status(400).json({errors: errors.array()})
     }
-    const newTrack = new Track(req.body);
-    await newTrack.save()
-    return res.status(200).json(newTrack)
+    const user = await User.findById(req.params.userid)
+    const album = await Album.findById(req.body.album)
+    if(user){
+      const newTrack = new Track(req.body);
+      await newTrack.save()
+      user.tracks.unshift(newTrack._id)
+      if(album){
+        album.tracks.unshift(newTrack._id)
+        await album.save()
+      }else{
+        return res.status(400).send({"message": "album does not exist"})
+      }
+      await user.save()
+      return res.status(200).json(newTrack)
+    }
   }catch(err){
     console.error(err)
     return res.status(400).json({errors: errors.array()})
