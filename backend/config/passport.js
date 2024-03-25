@@ -43,30 +43,74 @@ passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
   }
 }));
 
+// exports.loginUser = async function(user) {
+//     await user.populate({
+//       path: 'playlists',
+//       select: '_id title'
+//     })
+//     await user.populate({
+//       path: 'tracks',
+//       select: '_id title'
+//     })
+
+//   const userInfo = {
+//     _id: user._id,
+//     username: user.username,
+//     email: user.email,
+//     tracks: user.tracks,
+//     albums: user.albums,
+//     playlists: user.playlists
+//   };
+//   const token = await jwt.sign(
+//     userInfo, // payload
+//     secretOrKey, // sign with secret key
+//     { expiresIn: 3600 } // tell the key to expire in one hour
+//   );
+//   return {
+//     user: userInfo,
+//     token
+//   };
+// };
+
+
 exports.loginUser = async function(user) {
+  try {
+    // Populate playlists and tracks fields for the user
     await user.populate({
       path: 'playlists',
-      select: '_id title',
+      select: '_id title'
+    })
+    await user.populate({
+      path: 'tracks',
+      select: '_id title'
     })
 
-  const userInfo = {
-    _id: user._id,
-    username: user.username,
-    email: user.email,
-    tracks: user.tracks,
-    albums: user.albums,
-    playlists: user.playlists
-  };
-  const token = await jwt.sign(
-    userInfo, // payload
-    secretOrKey, // sign with secret key
-    { expiresIn: 3600 } // tell the key to expire in one hour
-  );
-  return {
-    user: userInfo,
-    token
-  };
+    // Generate token
+    const token = await jwt.sign(
+      { _id: user._id },
+      secretOrKey,
+      { expiresIn: 3600 }
+    );
+
+    // Return user info and token
+    return {
+      user: {
+        _id: user._id,
+        username: user.username,
+        email: user.email,
+        playlists: user.playlists,
+        tracks: user.tracks
+      },
+      token
+    };
+  } catch (err) {
+    throw err;
+  }
 };
+
+
+
+
 exports.restoreUser = (req, res, next) => {
   return passport.authenticate('jwt', { session: false }, function(err, user) {
     if (err) return next(err);
