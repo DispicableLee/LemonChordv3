@@ -17,10 +17,43 @@ export const fetchTracks = () => async dispatch =>{
     } catch (err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
-        dispatch(receiveErrors(resBody.errors));
+            dispatch(receiveErrors(resBody.errors));
         }
     }
 }
+
+const RECEIVE_NEW_TRACK = "tracks/RECEIVE_NEW_TRACK"
+function receiveNewTrack(track){
+    return {
+        type: RECEIVE_NEW_TRACK,
+        track
+    }
+}
+
+export const postNewTrack = (userId, trackData) => async dispatch=>{
+    try{
+        const res = await jwtFetch(`/api/tracks/newtrack/${userId}`,{
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(trackData)
+        })
+        const newTrack = res.json()
+        dispatch(receiveNewTrack(newTrack))
+    }catch(err){
+        const resErrors = await err.json()
+        if(resErrors.statusCode === 400){
+            dispatch(receiveErrors(resErrors.errors))
+        }
+    }
+}
+
+
+
+
+
+
 
 const UPDATE_TRACK = "tracks/UPDATE_TRACK";
 function updateTrack(track){
@@ -73,9 +106,13 @@ export const eventErrorsReducer = (state = nullErrors, action) => {
 
 
 const tracksReducer = (state=[], action) =>{
+    let newState = [...state]
     switch(action.type){
         case RECEIVE_TRACKS:
             return [...action.tracks]
+        case RECEIVE_NEW_TRACK:
+            newState.unshift(action.track)
+            return newState
         default:
             return state
     }

@@ -39,16 +39,14 @@ router.post('/newtrack/:userid', validateTrackInput, async(req,res, next)=>{
       return res.status(400).json({errors: errors.array()})
     }
     const user = await User.findById(req.params.userid)
-    const album = await Album.findById(req.body.album)
     if(user){
       const newTrack = new Track(req.body);
       await newTrack.save()
       user.tracks.unshift(newTrack._id)
-      if(album){
+      if(req.body.album){
+        const album = await Album.findById(req.body.album)
         album.tracks.unshift(newTrack._id)
         await album.save()
-      }else{
-        return res.status(400).send({"message": "album does not exist"})
       }
       await user.save()
       return res.status(200).json(newTrack)

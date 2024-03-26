@@ -71,22 +71,6 @@ export default function S3Upload ({setDisplayedSongs, displayedSongs}){
             uploader: callId
         }
 
-
-
-
-
-
-
-      const oldObj = {
-          name: name,
-          bucket: data.bucket,
-          key: data.key,
-          location: data.location,
-          likes: [],
-          userId: callId,
-          image: image,
-          comments: []
-      }
       console.log(newObj)
       fetch(`http://localhost:4002/api/v2/endPoints/new/audio/${callId}`, {
           method: "POST",
