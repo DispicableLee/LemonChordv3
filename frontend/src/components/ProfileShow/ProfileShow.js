@@ -32,7 +32,11 @@ export default function ProfileShow(){
                 : 
                     <></>
                 }
+                <div className="user-stats-main">
+                    <div className="user-stats">
 
+                    </div>
+                </div>
             </div>
         </div>
     )
