@@ -33,8 +33,18 @@ export default function ProfileShow(){
                     <></>
                 }
                 <div className="user-stats-main">
-                    <div className="user-stats">
 
+                    <div className="user-stats">
+                        <div className="user-content-stats">
+                            <div className="user-stat-box">
+                                <h1>{shownUser?.playlists.length}</h1>
+                                <h4>Playlists</h4>
+                            </div>
+                            <div className="user-stat-box">
+                                <h1>{shownUser?.tracks.length}</h1>
+                                <h4>Tracks</h4>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

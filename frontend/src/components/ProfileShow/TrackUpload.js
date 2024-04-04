@@ -88,7 +88,7 @@ export default function TrackUpload(){
                     <input type="file" 
                         id="upload-file-input"
                         title=" "
-                        // hidden
+                        hidden
                         onChange={(e)=>handleFileInput(e)} 
                     />
                     {selectedFile && <h2>{selectedFileName}</h2>}
