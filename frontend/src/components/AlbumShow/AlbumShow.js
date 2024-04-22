@@ -1,8 +1,7 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
-import { useParams } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useParams, Link } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchOneAlbum, deleteAlbum, fetchAlbums } from "../../store/albums";
 import SingleTrack from "../SingleTrack/SingleTrack";
 import './AlbumShow.css'
@@ -53,7 +52,10 @@ export default function AlbumShow({}){
             <div className={deleteAlbumModal ? "album-show-header-modal" : "album-show-header"}>
                 <div className="album-show-info">
                     <img src={imageUrl}/>
-                    <h2>{title}</h2>
+                    <div className="title-artist-header">
+                        <h2>{title}</h2>
+                        <h5>{shownAlbumUploader?.username}</h5>
+                    </div>
                 </div>
 
                 <div id="remove-album"

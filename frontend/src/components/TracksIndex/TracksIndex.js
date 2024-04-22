@@ -5,6 +5,7 @@ import { fetchTracks } from "../../store/tracks";
 import { useDispatch, useSelector } from "react-redux";
 import { Suspense } from "react";
 import SingleTrack from "../SingleTrack/SingleTrack";
+import { recieveOnePlaylist } from "../../store/playlists";
 import './TracksIndex.css'
 
 export default function TracksIndex(){
@@ -13,6 +14,10 @@ export default function TracksIndex(){
         dispatch(fetchTracks())
     },[dispatch])
     const fetchedTracks = useSelector(store=>store?.tracks)
+
+    useEffect(()=>{
+        dispatch(recieveOnePlaylist(fetchedTracks))
+    },[dispatch])
     const [tracks, setTracks] = useState(fetchedTracks)
 
 

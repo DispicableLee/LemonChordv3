@@ -28,6 +28,8 @@ export const removeCurrentTrack = () => ({
 })
 
 
+// =================== Session Playlist Actions (for skipping purposes) =====================
+
 
 
 // ⁡⁣⁣⁢============= Auth Actions =======================⁡
@@ -91,7 +93,7 @@ export const logout = () => dispatch => {
 
 
 
-// ============== session errors =============
+// ⁡⁢⁢=========================⁢============ session errors =====================================⁡
 const nullErrors = null;
 
 export const sessionErrorsReducer = (state = nullErrors, action) => {

@@ -20,10 +20,8 @@
 }
 
 .profile-content-main{
-    /* border: 1px solid #e2e2e2; */
     width: 100%;
     height: 90%;
-    /* padding: 2%; */
     margin: 2%;
     display: flex;
     flex-direction: row;
@@ -88,26 +86,29 @@
 
 .user-stats-main{
     border: 1px solid #e2e2e2;
+    box-shadow: 1px 3px 4px 1px #adadad;
+    transition: all 0.5s ease;
     border-radius: 10px;
     width: 60%;
     height: 100%;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-start;
     padding: 10px;
 }
 
 
 
+
 @keyframes userStatFadeFromRight {
     0%{
         /* right: -1000; */
-        opacity: 0;
+        width: 0%;
     }
     100%{
         /* right: 0; */
-        opacity: 100;
+        opacity: 100%;
     }
 
 }
@@ -118,20 +119,27 @@
     border-radius: 10px;
     height: 90%;
     width: 60%;
-    box-shadow: 3px 3px 4px 1px #e2e2e2;
+    /* box-shadow: 3px 3px 4px 1px #e2e2e2; */
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
 }
 
+.user-stats:hover{
+    border: 1px solid #e2e2e2;
+    box-shadow: -1px -1px 4px 2px #adadad
+}
+
 .user-content-stats{
-    border: 1px solid black;
+    /* border: 1px solid black; */
     width: 100%;
     height: 30%;
     padding: 1%;    
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
     gap: 20px;
 }   
 
@@ -154,8 +162,11 @@
 }
 
 
-.user-stat-box h1{
-    animation: statFadeIn 3s ease;
-    /* animation-delay:0.5s; */
+.user-stat-box:hover{
+
+}
+.user-stat-box h1, h4{
+    animation: statFadeIn 4s ease;
+    transition: all 4s ease;
 }
 

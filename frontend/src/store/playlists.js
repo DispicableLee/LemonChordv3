@@ -17,7 +17,7 @@ export const fetchPlaylists = ()=>async dispatch=>{
 // ========================================== RECIEVE_ONE_PLAYLIST ====================================
 const RECIEVE_ONE_PLAYLIST = "playlists/RECIEVE_ONE_PLAYLIST"
 
-function recieveOnePlaylist(playlist){
+export function recieveOnePlaylist(playlist){
     return {
         type: RECIEVE_ONE_PLAYLIST,
         playlist
