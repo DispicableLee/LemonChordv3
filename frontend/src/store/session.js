@@ -27,8 +27,47 @@ export const removeCurrentTrack = () => ({
   type: REMOVE_CURRENT_TRACK
 })
 
+// ==========================================================================================
+// =⁡⁣⁢⁣================== Session Playlist Actions (for skipping purposes) =====================
+// ==========================================================================================⁡
 
-// =================== Session Playlist Actions (for skipping purposes) =====================
+const RECIEVE_INDEX_PLAYFEED = "session/RECIEVE_INDEX_PLAYFEED"
+export const recieveIndexPlayfeed = (playFeed) =>({
+  type: RECIEVE_INDEX_PLAYFEED,
+  playFeed
+})
+
+export const setupIndexPlayfeed = () => async dispatch =>{
+    try {
+        const res = await jwtFetch('/api/tracks');
+        const tracks = await res.json();
+        dispatch(recieveIndexPlayfeed(tracks));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            dispatch(receiveErrors(resBody.errors));
+        }
+    }
+}
+
+const RECIEVE_CURRENT_PLAYFEED = "session/RECIEVE_CURRENT_PLAYFEED"
+export const recieveCurrentPlayfeed = (playFeed) =>({
+  type: RECIEVE_CURRENT_PLAYFEED,
+  playFeed
+})
+
+export const setupCurrentPlayfeed = (albumId) => async dispatch =>{
+    try{
+        const res = await jwtFetch(`/api/albums/${albumId}`)
+        const shownAlbum = await res.json()
+        dispatch(recieveCurrentPlayfeed(shownAlbum?.tracks))
+    }catch(err){
+        const resBody = await err.json();
+        if(resBody.statusCode === 400){
+            console.log("sorry man, couldnt do it")
+        }
+    }
+}
 
 
 
@@ -125,6 +164,10 @@ const sessionReducer = (state = initialState, action) => {
       return {...state, user: action.currentUser };
     case RECEIVE_USER_LOGOUT:
       return initialState;
+    case RECIEVE_INDEX_PLAYFEED:
+      return {...state, playFeed: action.playFeed}
+    case RECIEVE_CURRENT_PLAYFEED:
+      return {...state, playFeed: action.playFeed}
     case RECIEVE_LIGHT_DARK:
       return {...state, isLight: action.payload}
     case RECIEVE_CURRENT_TRACK:

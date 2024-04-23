@@ -1,37 +1,32 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import SearchBar from "../SearchBar.js/SearchBar";
-import { useState, useEffect } from "react";
 import { fetchTracks } from "../../store/tracks";
 import { useDispatch, useSelector } from "react-redux";
-import { Suspense } from "react";
 import SingleTrack from "../SingleTrack/SingleTrack";
-import { recieveOnePlaylist } from "../../store/playlists";
+import { recieveIndexPlayfeed } from "../../store/session";
 import './TracksIndex.css'
 
-export default function TracksIndex(){
-    const dispatch = useDispatch()
-    useEffect(()=>{
-        dispatch(fetchTracks())
-    },[dispatch])
-    const fetchedTracks = useSelector(store=>store?.tracks)
+export default function TracksIndex() {
+    const dispatch = useDispatch();
+    const fetchedTracks = useSelector(store => store?.tracks);
+    const [tracks, setTracks] = useState(fetchedTracks);
 
-    useEffect(()=>{
-        dispatch(recieveOnePlaylist(fetchedTracks))
-    },[dispatch])
-    const [tracks, setTracks] = useState(fetchedTracks)
+    useEffect(() => {
+        dispatch(fetchTracks())// Call the async function inside useEffect
+    }, [dispatch]); // Include fetchedTracks in the dependency array
+
+    dispatch(recieveIndexPlayfeed(fetchedTracks))
 
 
-    const renderedTracks = tracks?.map((track)=>{
-        return (
-            <SingleTrack 
-                key={track._id} 
-                title={track.title}
-                audioUrl = {track.audioUrl}
-                uploader = {track.uploader}
-                album = {track.album}
-            />
-        )
-    })
+    const renderedTracks = tracks?.map((track) => (
+        <SingleTrack 
+            key={track._id} 
+            title={track.title}
+            audioUrl={track.audioUrl}
+            uploader={track.uploader}
+            album={track.album}
+        />
+    ));
 
     return (
         <div id="tracks-index-main">
@@ -39,10 +34,8 @@ export default function TracksIndex(){
                 tracks={tracks}
                 setTracks={setTracks}
                 fetchedTracks={fetchedTracks}
-                />
-            <div>
-                    {renderedTracks}
-            </div>
+            />
+            <div>{renderedTracks}</div>
         </div>
-    )
+    );
 }
