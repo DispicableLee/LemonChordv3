@@ -69,11 +69,15 @@ export const setupCurrentPlayfeed = (albumId) => async dispatch =>{
     }
 }
 
+
+
 const PLAY_PREVIOUS_TRACK = "session/PLAY_PREVIOUS_TRACK"
-export const playPreviousTrack = (trackId) =>({
-  type: PLAY_PREVIOUS_TRACK,
-  trackId
-})
+export function playPreviousTrack(trackId){
+  return { 
+    type: PLAY_PREVIOUS_TRACK,
+    trackId
+  }
+}
 
 const PLAY_NEXT_TRACK = "session/PLAY_NEXT_TRACK"
 export const playNextTrack = (trackId) =>({
@@ -182,8 +186,12 @@ const sessionReducer = (state = initialState, action) => {
     case RECIEVE_CURRENT_PLAYFEED:
       return {...state, playFeed: action.playFeed}
     case PLAY_PREVIOUS_TRACK:
+      let changedTrack;
+      console.log("playling previous track")
+      console.log("action", action)
       currentTrackIndex = state.playFeed.findIndex(track =>track._id === action.trackId)
       console.log(currentTrackIndex)
+      // return {...state, currentTrack: changedTrack}
     case PLAY_NEXT_TRACK:
       currentTrackIndex = state.playFeed.findIndex(track =>track._id === action.trackId)
       console.log(currentTrackIndex)

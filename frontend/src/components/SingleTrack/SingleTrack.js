@@ -4,12 +4,13 @@ import { useState } from "react"
 import { recieveCurrentTrack } from "../../store/session"
 import './SingleTrack.css'
 
-export default function SingleTrack({title, audioUrl, uploader, album, style}){
+export default function SingleTrack({_id, title, audioUrl, uploader, album, style}){
     const dispatch = useDispatch()
 
 
     function setCurrentTrack(){
         let trackObj = {
+            _id,
             title,
             audioUrl,
             uploader,

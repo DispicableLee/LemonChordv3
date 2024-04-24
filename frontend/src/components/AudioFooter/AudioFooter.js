@@ -1,5 +1,7 @@
 import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
+import { IconButton} from '@mui/material';
+import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
 import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
@@ -30,13 +32,12 @@ export default function AudioFooter(){
         return `${minutes}:${seconds < 10 ? `0${seconds}` : seconds}`;
     };
 
-    // const handleSkipForward = () => {
-    //     dispatch(skipForward());
-    // };
 
-    // const handleSkipBackward = () => {
-    //     dispatch(skipBackward());
-    // };
+
+    const handleSkipForward = () => {
+        dispatch(playNextTrack(currentTrack._id));
+    };
+
 
     useEffect(()=>{
         let audioElement = audioRef.current
@@ -98,9 +99,9 @@ export default function AudioFooter(){
             </div>
             <div id="controls-progress">
                 <div className="backwards-pause-forwards">
-                    {/* <IconButton onClick={handleSkipBackward} disabled={!isReady} style={{color: "white"}}>
+                    <IconButton onClick={()=>dispatch(playPreviousTrack(currentTrack?._id))} disabled={!isReady} style={{color: "white"}}>
                         <SkipPreviousIcon />
-                    </IconButton> */}
+                    </IconButton>
                     <button
                         disabled={!isReady}
                         onClick={togglePlayPause}

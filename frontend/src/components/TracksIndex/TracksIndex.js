@@ -21,6 +21,7 @@ export default function TracksIndex() {
     const renderedTracks = tracks?.map((track) => (
         <SingleTrack 
             key={track._id} 
+            _id={track._id} 
             title={track.title}
             audioUrl={track.audioUrl}
             uploader={track.uploader}
