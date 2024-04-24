@@ -9,13 +9,18 @@ import './TracksIndex.css'
 export default function TracksIndex() {
     const dispatch = useDispatch();
     const fetchedTracks = useSelector(store => store?.tracks);
-    const [tracks, setTracks] = useState(fetchedTracks);
+    const [tracks, setTracks] = useState([]);
 
     useEffect(() => {
-        dispatch(fetchTracks())// Call the async function inside useEffect
-    }, [dispatch]); // Include fetchedTracks in the dependency array
+        dispatch(fetchTracks());
+    }, [dispatch]); 
 
-    dispatch(recieveIndexPlayfeed(fetchedTracks))
+    useEffect(() => {
+        if (fetchedTracks) {
+            setTracks(fetchedTracks);
+            dispatch(recieveIndexPlayfeed(fetchedTracks));
+        }
+    }, [fetchedTracks, dispatch]);
 
 
     const renderedTracks = tracks?.map((track) => (

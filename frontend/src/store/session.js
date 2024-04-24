@@ -176,6 +176,7 @@ const initialState = {
 
 const sessionReducer = (state = initialState, action) => {
   let currentTrackIndex;
+  let changedTrack;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return {...state, user: action.currentUser };
@@ -186,15 +187,27 @@ const sessionReducer = (state = initialState, action) => {
     case RECIEVE_CURRENT_PLAYFEED:
       return {...state, playFeed: action.playFeed}
     case PLAY_PREVIOUS_TRACK:
-      let changedTrack;
       console.log("playling previous track")
       console.log("action", action)
       currentTrackIndex = state.playFeed.findIndex(track =>track._id === action.trackId)
-      console.log(currentTrackIndex)
-      // return {...state, currentTrack: changedTrack}
+      if(currentTrackIndex===0){
+        changedTrack = state.playFeed[state.playFeed.length-1]
+      }else if(currentTrackIndex>0){
+        changedTrack = state.playFeed[currentTrackIndex-1]
+        // console.log(changedTrack)
+      }else{
+        console.log("dunno what you did, but this track doesnt exist")
+      }
+      return {...state, currentTrack: changedTrack}
     case PLAY_NEXT_TRACK:
       currentTrackIndex = state.playFeed.findIndex(track =>track._id === action.trackId)
-      console.log(currentTrackIndex)
+      if(currentTrackIndex===state.playFeed.length-1){
+        changedTrack = state.playFeed[0]
+      }else{
+        changedTrack = state.playFeed[currentTrackIndex+1]
+      }
+      return {...state, currentTrack: changedTrack}
+      // console.log(currentTrackIndex)
     case RECIEVE_LIGHT_DARK:
       return {...state, isLight: action.payload}
     case RECIEVE_CURRENT_TRACK:

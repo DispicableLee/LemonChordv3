@@ -2,6 +2,7 @@ import PlayArrowIcon from '@mui/icons-material/PlayArrow';
 import PauseIcon from '@mui/icons-material/Pause';
 import { IconButton} from '@mui/material';
 import SkipPreviousIcon from '@mui/icons-material/SkipPrevious';
+import SkipNextIcon from '@mui/icons-material/SkipNext';
 import React from "react";
 import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
@@ -108,9 +109,9 @@ export default function AudioFooter(){
                     > 
                             {isPlaying ? <PauseIcon/> :<PlayArrowIcon/>}
                     </button> 
-                    {/* <IconButton onClick={handleSkipForward} disabled={!isReady} style={{color: "white"}}>
+                    <IconButton onClick={()=>dispatch(playNextTrack(currentTrack?._id))} disabled={!isReady} style={{color: "white"}}>
                         <SkipNextIcon />
-                    </IconButton> */}
+                    </IconButton>
                 </div>
                 {/* ⁡⁢⁣⁢progress bar⁡ */}
                 <section className="progress-bar-holder">
