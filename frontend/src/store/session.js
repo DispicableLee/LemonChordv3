@@ -69,6 +69,18 @@ export const setupCurrentPlayfeed = (albumId) => async dispatch =>{
     }
 }
 
+const PLAY_PREVIOUS_TRACK = "session/PLAY_PREVIOUS_TRACK"
+export const playPreviousTrack = (trackId) =>({
+  type: PLAY_PREVIOUS_TRACK,
+  trackId
+})
+
+const PLAY_NEXT_TRACK = "session/PLAY_NEXT_TRACK"
+export const playNextTrack = (trackId) =>({
+  type: PLAY_NEXT_TRACK,
+  trackId
+})
+
 
 
 // ⁡⁣⁣⁢============= Auth Actions =======================⁡
@@ -159,6 +171,7 @@ const initialState = {
 };
 
 const sessionReducer = (state = initialState, action) => {
+  let currentTrackIndex;
   switch (action.type) {
     case RECEIVE_CURRENT_USER:
       return {...state, user: action.currentUser };
@@ -168,6 +181,12 @@ const sessionReducer = (state = initialState, action) => {
       return {...state, playFeed: action.playFeed}
     case RECIEVE_CURRENT_PLAYFEED:
       return {...state, playFeed: action.playFeed}
+    case PLAY_PREVIOUS_TRACK:
+      currentTrackIndex = state.playFeed.findIndex(track =>track._id === action.trackId)
+      console.log(currentTrackIndex)
+    case PLAY_NEXT_TRACK:
+      currentTrackIndex = state.playFeed.findIndex(track =>track._id === action.trackId)
+      console.log(currentTrackIndex)
     case RECIEVE_LIGHT_DARK:
       return {...state, isLight: action.payload}
     case RECIEVE_CURRENT_TRACK:

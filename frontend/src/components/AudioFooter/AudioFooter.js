@@ -5,7 +5,7 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import { useDispatch } from "react-redux";
 import { useState, useEffect, useRef } from "react";
-import { removeCurrentTrack } from '../../store/session';
+import { removeCurrentTrack, playPreviousTrack, playNextTrack } from '../../store/session';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import "./AudioFooter.css"
 
