@@ -187,14 +187,11 @@ const sessionReducer = (state = initialState, action) => {
     case RECIEVE_CURRENT_PLAYFEED:
       return {...state, playFeed: action.playFeed}
     case PLAY_PREVIOUS_TRACK:
-      console.log("playling previous track")
-      console.log("action", action)
       currentTrackIndex = state.playFeed.findIndex(track =>track._id === action.trackId)
       if(currentTrackIndex===0){
         changedTrack = state.playFeed[state.playFeed.length-1]
       }else if(currentTrackIndex>0){
         changedTrack = state.playFeed[currentTrackIndex-1]
-        // console.log(changedTrack)
       }else{
         console.log("dunno what you did, but this track doesnt exist")
       }

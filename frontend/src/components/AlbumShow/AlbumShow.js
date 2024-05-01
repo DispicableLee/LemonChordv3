@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams, Link } from "react-router-dom/cjs/react-router-dom.min";
 import { fetchOneAlbum, deleteAlbum, fetchAlbums } from "../../store/albums";
+import { recieveCurrentPlayfeed } from "../../store/session";
 import SingleTrack from "../SingleTrack/SingleTrack";
 import './AlbumShow.css'
 
@@ -11,6 +12,7 @@ export default function AlbumShow({}){
     const dispatch = useDispatch()
     const {id} = useParams()
     const shownAlbum = useSelector(store=>store?.albums?.shownAlbum)
+    const shownAlbumTracks = shownAlbum?.tracks
     const [removeHover, setRemoveHover] = useState(false)
     const [deleteAlbumModal, setDeleteAlbumModal] = useState(false)
     let imageUrl = shownAlbum?.imageUrl
@@ -20,6 +22,12 @@ export default function AlbumShow({}){
     useEffect(()=>{
         dispatch(fetchOneAlbum(id))
     },[dispatch])
+
+    useEffect(()=>{
+        if(shownAlbumTracks){
+            dispatch(recieveCurrentPlayfeed(shownAlbumTracks))
+        }
+    }, [shownAlbumTracks, dispatch])
     
 
     const renderedAlbumTracks = shownAlbum?.tracks?.map((track, index)=>{
