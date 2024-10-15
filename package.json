@@ -44,6 +44,6 @@
   },
   "homepage": "https://github.com/DispicableLee/LemonChordv3#readme",
   "engines": {
-    "node": "16.x"
+    "node": "20.x"
   }
 }
