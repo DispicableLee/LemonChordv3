@@ -72,10 +72,6 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
   }
 
 
-
-
-
-  // Otherwise create a new user
   const newUser = new User({
     username: req.body.username,
     email: req.body.email,

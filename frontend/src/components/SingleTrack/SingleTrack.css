@@ -27,6 +27,7 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    /* justify-content: space-between; */
     width: 95%;
     gap: 10px;
     padding: 10px;
@@ -67,4 +68,16 @@
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+}
+
+.like-button{
+  color: #e2e2e2;
+  /* stroke: black */
+}
+
+.like-button:hover{
+  cursor: pointer;
+}
+.like-button:hover path {
+  stroke: url(#gradient1);
 }
