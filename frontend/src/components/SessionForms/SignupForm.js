@@ -6,7 +6,7 @@ import { signup, clearSessionErrors } from '../../store/session';
 
 function SignupForm () {
 
-  // pls
+  // pl
   const history = useHistory()
   const [email, setEmail] = useState('');
   const [username, setUsername] = useState('');
