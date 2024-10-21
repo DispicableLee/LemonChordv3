@@ -1,115 +1,81 @@
-var express = require('express');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const express = require('express');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const cors = require('cors');
-const { isProduction } = require('./config/keys');
 const csurf = require('csurf');
-const debug = require('debug');
+const passport = require('passport');
+const path = require('path');
+const { isProduction } = require('./config/keys');
 
-
+// Import your routes
 const csrfRouter = require('./routes/api/csrf');
-var albumsRouter = require('./routes/api/albums')
-var playlistsRouter = require('./routes/api/playlists')
-var tracksRouter = require('./routes/api/tracks')
-require('./models/User');
-require('./config/passport'); // <-- ADD THIS LINE
-const passport = require('passport'); // <-- ADD THIS LINE
-var usersRouter = require('./routes/api/users');
+const albumsRouter = require('./routes/api/albums');
+const playlistsRouter = require('./routes/api/playlists');
+const tracksRouter = require('./routes/api/tracks');
+const usersRouter = require('./routes/api/users');
 
+// Initialize the app
+const app = express();
 
-
-var app = express();
-
+// Middleware setup
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 
-
-
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,PATCH");
-  res.header("Access-Control-Allow-Headers", "Content-Type, Authorization");
-  next();
-});
-// ADD THIS SECURITY MIDDLEWARE
-// Security Middleware
-if (!isProduction) {
-  // Enable CORS only in development because React will be on the React
-  // development server (http://localhost:3000). (In production, the Express 
-  // server will serve the React files statically.)
-  app.use(cors());
-}
-
-app.use(cors({
-  origin: ["https://lemon-chordv3-oy5lj9pfp-dispicablelee.vercel.app"],
+// CORS setup
+const corsOptions = {
+  origin: isProduction ? 'https://lemonchordv3-frontend.onrender.com' : 'http://localhost:3000',
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
+};
+
+app.use(cors(corsOptions));
+
+// CSRF Protection middleware
+app.use(csurf({
+  cookie: {
+    secure: isProduction,
+    sameSite: isProduction ? "Lax" : false,
+    httpOnly: true
+  }
 }));
 
-
-
-// Set the _csrf token and create req.csrfToken method to generate a hashed
-// CSRF token
-app.use(
-  csurf({
-    cookie: {
-      secure: isProduction,
-      sameSite: isProduction && "Lax",
-      httpOnly: true
-    }
-  })
-);
-
-
-
-
+// Routes setup
 app.use('/api/csrf', csrfRouter);
 app.use('/api/albums', albumsRouter);
-app.use('/api/tracks', tracksRouter);
 app.use('/api/playlists', playlistsRouter);
+app.use('/api/tracks', tracksRouter);
 app.use('/api/users', usersRouter);
 
-// Serve the frontend's build files
+// Serve the frontend's build files in production
 if (isProduction) {
-  const path = require('path');
-
-  // Serve the static assets in the frontend's build folder
-  app.use(express.static(path.resolve("../frontend/build")));
+  // app.use(express.static(path.resolve("../frontend/build")));
 
   // Serve the frontend's index.html file at all routes NOT starting with /api
   app.get(/^(?!\/?api).*/, (req, res) => {
     res.cookie('CSRF-TOKEN', req.csrfToken());
-    res.sendFile(
-      path.resolve(__dirname, '../frontend', 'build', 'index.html')
-    );
+    res.sendFile(path.resolve(__dirname, '../frontend', 'build', 'index.html'));
   });
 }
 
-
-// Express custom middleware for catching all unmatched requests and formatting
-// a 404 error to be sent as the response.
+// 404 Error handler
 app.use((req, res, next) => {
   const err = new Error('Not Found');
   err.statusCode = 404;
   next(err);
 });
 
-const serverErrorLogger = debug('backend:error');
-
-// Express custom error handler that will be called whenever a route handler or
-// middleware throws an error or invokes the `next` function with a truthy value
+// Error handling middleware
 app.use((err, req, res, next) => {
-  serverErrorLogger(err);
+  console.error(err); // Log the error for debugging
   const statusCode = err.statusCode || 500;
-  res.status(statusCode);
-  res.json({
+  res.status(statusCode).json({
     message: err.message,
     statusCode,
     errors: err.errors
-  })
+  });
 });
 
 module.exports = app;
