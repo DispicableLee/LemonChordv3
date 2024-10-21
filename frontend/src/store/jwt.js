@@ -8,7 +8,7 @@ function getCookie(cookieName) {
 }
 
 // Define the base URL for your API, you can set this in your environment variables
-const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000'; // Update this to your back-end URL when deployed
+const BASE_URL = process.env.REACT_APP_API // Update this to your back-end URL when deployed
 
 async function jwtFetch(url, options = {}) {
   // Set options.method to 'GET' if there is no method.
