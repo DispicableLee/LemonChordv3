@@ -32,7 +32,7 @@ async function jwtFetch(url, options = {}) {
   console.log("BASE_URL",BASE_URL)
   console.log("url", url)
 
-  const fullUrl = `${BASE_URL}${url}`;
+  const fullUrl = `${BASE_URL}${url}`
   console.log("full url", fullUrl)
 
   // Call fetch with the full URL and the updated options hash.
