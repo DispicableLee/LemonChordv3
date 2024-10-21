@@ -1,12 +1,9 @@
 import jwtFetch from "./jwt";
 import { RECEIVE_USER_LOGOUT } from "./session";
 
-const API_URL = process.env.REACT_APP_API;
-
 // Action types
 const RECEIVE_TRACKS = "tracks/RECEIVE_TRACKS";
 const RECEIVE_NEW_TRACK = "tracks/RECEIVE_NEW_TRACK";
-const UPDATE_TRACK = "tracks/UPDATE_TRACK";
 const DELETE_TRACK = "tracks/DELETE_TRACK";
 const RECEIVE_TRACK_ERRORS = "tracks/RECEIVE_TRACK_ERRORS";
 const CLEAR_TRACK_ERRORS = "tracks/CLEAR_TRACK_ERRORS";
@@ -49,7 +46,7 @@ export function clearTrackErrors() {
 // Thunk actions
 export const fetchTracks = () => async dispatch => {
     try {
-        const res = await jwtFetch(`${API_URL}/api/tracks`);
+        const res = await jwtFetch(`/api/tracks`); // Directly use the endpoint
         const tracks = await res.json();
         dispatch(receiveTracks(tracks));
     } catch (err) {
@@ -62,7 +59,7 @@ export const fetchTracks = () => async dispatch => {
 
 export const postNewTrack = (userId, trackData) => async dispatch => {
     try {
-        const res = await jwtFetch(`${API_URL}/api/tracks/newtrack/${userId}`, {
+        const res = await jwtFetch(`/api/tracks/newtrack/${userId}`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

@@ -1,10 +1,8 @@
 import jwtFetch from "./jwt";
 
-// Get the API URL from environment variables
-const REACT_APP_API = process.env.REACT_APP_API;
-
 // ======================================== RECIEVE_PLAYLISTS ================================
 const RECIEVE_PLAYLISTS = "playlists/RECIEVE_PLAYLISTS";
+
 function recievePlaylists(playlists) {
     return {
         type: RECIEVE_PLAYLISTS,
@@ -14,7 +12,7 @@ function recievePlaylists(playlists) {
 
 export const fetchPlaylists = () => async (dispatch) => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/playlists`);
+        const res = await jwtFetch(`/api/playlists`); // Directly use the endpoint
         const playlists = await res.json();
         dispatch(recievePlaylists(playlists));
     } catch (err) {
@@ -34,7 +32,7 @@ export function recieveOnePlaylist(playlist) {
 
 export const fetchOnePlaylist = (playlistId) => async (dispatch) => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/playlists/find/${playlistId}`);
+        const res = await jwtFetch(`/api/playlists/find/${playlistId}`); // Directly use the endpoint
         const shownPlaylist = await res.json();
         dispatch(recieveOnePlaylist(shownPlaylist));
     } catch (err) {
@@ -42,7 +40,9 @@ export const fetchOnePlaylist = (playlistId) => async (dispatch) => {
     }
 };
 
+// ========================================== CREATE A NEW PLAYLIST ====================================
 const RECIEVE_NEW_PLAYLIST = "playlists/RECIEVE_NEW_PLAYLIST";
+
 function recieveNewPlaylist(playlist) {
     return {
         type: RECIEVE_NEW_PLAYLIST,
@@ -52,7 +52,7 @@ function recieveNewPlaylist(playlist) {
 
 export const createOnePlaylist = (userId, playlistFormData) => async (dispatch) => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/playlists/newplaylist/${userId}`, {
+        const res = await jwtFetch(`/api/playlists/newplaylist/${userId}`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -66,6 +66,7 @@ export const createOnePlaylist = (userId, playlistFormData) => async (dispatch) 
     }
 };
 
+// ========================================= ADD TRACKS TO PLAYLIST =====================================
 const ADD_TRACKS_TO_PLAYLIST = "playlists/ADD_TRACKS_TO_PLAYLIST";
 
 function recieveTracksInPlaylist(updatedPlaylist) {
@@ -77,7 +78,7 @@ function recieveTracksInPlaylist(updatedPlaylist) {
 
 export const addSongsToPlaylist = (playlistId, trackIdsToAdd) => async (dispatch) => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/playlists/addsongs/${playlistId}`, {
+        const res = await jwtFetch(`/api/playlists/addsongs/${playlistId}`, {
             method: "PUT",
             headers: {
                 "Content-Type": "application/json",
@@ -91,6 +92,7 @@ export const addSongsToPlaylist = (playlistId, trackIdsToAdd) => async (dispatch
     }
 };
 
+// ========================================= PLAYLISTS REDUCER =========================================
 const playlistsReducer = (state = {}, action) => {
     let newState = { ...state };
     switch (action.type) {

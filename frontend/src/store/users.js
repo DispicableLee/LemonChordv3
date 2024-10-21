@@ -1,7 +1,5 @@
 import jwtFetch from "./jwt";
 
-const API_URL = process.env.REACT_APP_API;
-
 // Action type
 const RECEIVE_SHOWN_USER = "users/RECEIVE_SHOWN_USER";
 
@@ -16,11 +14,11 @@ export function receiveShownUser(user) {
 // Thunk action to fetch a user
 export const getOneUser = (userId) => async (dispatch) => {
     try {
-        const res = await jwtFetch(`${API_URL}/api/users/getuser/${userId}`);
+        const res = await jwtFetch(`/api/users/getuser/${userId}`); // Directly use the endpoint
         const data = await res.json();
         dispatch(receiveShownUser(data));
     } catch (err) {
-        console.error(err); // Fixed typo from console.err to console.error
+        console.error(err); // Logging errors for debugging
     }
 };
 

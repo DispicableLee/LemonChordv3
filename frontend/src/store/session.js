@@ -13,9 +13,6 @@ const RECIEVE_CURRENT_PLAYFEED = "session/RECIEVE_CURRENT_PLAYFEED";
 const PLAY_PREVIOUS_TRACK = "session/PLAY_PREVIOUS_TRACK";
 const PLAY_NEXT_TRACK = "session/PLAY_NEXT_TRACK";
 
-// Get the API URL from environment variables
-const REACT_APP_API = process.env.REACT_APP_API;
-
 // Action Creators
 export const recieveLightDark = (isLight) => ({
     type: RECIEVE_LIGHT_DARK,
@@ -39,7 +36,7 @@ export const recieveIndexPlayfeed = (playFeed) => ({
 
 export const setupIndexPlayfeed = () => async (dispatch) => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/tracks`);
+        const res = await jwtFetch(`/api/tracks`); // Directly use the endpoint
         const tracks = await res.json();
         dispatch(recieveIndexPlayfeed(tracks));
     } catch (err) {
@@ -57,7 +54,7 @@ export const recieveCurrentPlayfeed = (playFeed) => ({
 
 export const setupCurrentPlayfeed = (albumId) => async (dispatch) => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/albums/${albumId}`);
+        const res = await jwtFetch(`/api/albums/${albumId}`); // Directly use the endpoint
         const shownAlbum = await res.json();
         dispatch(recieveCurrentPlayfeed(shownAlbum?.tracks));
     } catch (err) {
@@ -100,13 +97,13 @@ export const clearSessionErrors = () => ({
 });
 
 export const getCurrentUser = () => async (dispatch) => {
-    const res = await jwtFetch(`/api/users/current`);
+    const res = await jwtFetch(`/api/users/current`); // Directly use the endpoint
     const user = await res.json();
     return dispatch(receiveCurrentUser(user));
 };
 
-export const signup = (user) => startSession(user, `${REACT_APP_API}/api/users/register`);
-export const login = (user) => startSession(user, `${REACT_APP_API}/api/users/login`);
+export const signup = (user) => startSession(user, `/api/users/register`); // Directly use the endpoint
+export const login = (user) => startSession(user, `/api/users/login`); // Directly use the endpoint
 
 const startSession = (userInfo, route) => async (dispatch) => {
     try {

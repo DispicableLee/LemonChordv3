@@ -1,11 +1,9 @@
 import jwtFetch from "./jwt";
 import { RECEIVE_USER_LOGOUT } from "./session";
 
-// Base API URL
-const REACT_APP_API = process.env.REACT_APP_API
-
 // ============= GET album actions ==============
 const RECEIVE_ALBUMS = "albums/RECEIVE_ALBUMS";
+
 function receiveAlbums(albums) {
     return {
         type: RECEIVE_ALBUMS,
@@ -15,7 +13,7 @@ function receiveAlbums(albums) {
 
 export const fetchAlbums = () => async dispatch => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/albums`);
+        const res = await jwtFetch(`/api/albums`); // Directly use the endpoint
         const albums = await res.json();
         dispatch(receiveAlbums(albums));
     } catch (err) {
@@ -27,6 +25,7 @@ export const fetchAlbums = () => async dispatch => {
 }
 
 const RECEIVE_ALBUM = "albums/RECEIVE_ALBUM";
+
 function receiveAlbum(album) {
     return {
         type: RECEIVE_ALBUM,
@@ -36,7 +35,7 @@ function receiveAlbum(album) {
 
 export const fetchOneAlbum = (albumId) => async dispatch => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/albums/${albumId}`);
+        const res = await jwtFetch(`/api/albums/${albumId}`); // Directly use the endpoint
         const shownAlbum = await res.json();
         dispatch(receiveAlbum(shownAlbum));
     } catch (err) {
@@ -59,7 +58,7 @@ function receiveNewAlbum(album) {
 
 export const uploadNewAlbum = (albumFormData) => async dispatch => {
     try {
-        const res = await jwtFetch(`${REACT_APP_API}/api/albums`, {
+        const res = await jwtFetch(`/api/albums`, { // Directly use the endpoint
             method: "POST",
             headers: {
                 'Content-Type': 'application/json',
@@ -83,6 +82,7 @@ export const uploadNewAlbum = (albumFormData) => async dispatch => {
 
 // ========================= DELETE ALBUM ACTIONS =========================
 const DELETE_ALBUM = "albums/DELETE_ALBUM";
+
 function removeAlbum(albumId) {
     return {
         type: DELETE_ALBUM,
@@ -92,7 +92,7 @@ function removeAlbum(albumId) {
 
 export const deleteAlbum = (albumId) => async dispatch => {
     try {
-        await jwtFetch(`${REACT_APP_API}/api/albums/delete/${albumId}`, {
+        await jwtFetch(`/api/albums/delete/${albumId}`, { // Directly use the endpoint
             method: "DELETE"
         });
         dispatch(removeAlbum(albumId));
@@ -104,6 +104,7 @@ export const deleteAlbum = (albumId) => async dispatch => {
 
 // ================ errors =========================
 const RECEIVE_ALBUM_ERRORS = "albums/RECEIVE_ALBUM_ERRORS";
+
 function receiveErrors(errors) {
     return {
         type: RECEIVE_ALBUM_ERRORS,
@@ -112,6 +113,7 @@ function receiveErrors(errors) {
 }
 
 const CLEAR_ALBUM_ERRORS = 'albums/CLEAR_ALBUM_ERRORS';
+
 export function clearAlbumErrors() {
     return {
         type: CLEAR_ALBUM_ERRORS
@@ -119,6 +121,7 @@ export function clearAlbumErrors() {
 }
 
 const nullErrors = null;
+
 export const albumErrorsReducer = (state = nullErrors, action) => {
     switch (action.type) {
         case RECEIVE_ALBUM_ERRORS:
