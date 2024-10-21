@@ -26,7 +26,7 @@ app.use(passport.initialize());
 
 // CORS setup
 const corsOptions = {
-  origin: isProduction ? 'https://lemonchordv3-frontend.onrender.com' : 'http://localhost:3000',
+  origin: ['https://lemonchordv3-frontend.onrender.com','http://localhost:3000'],
   methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
   credentials: true
 };
