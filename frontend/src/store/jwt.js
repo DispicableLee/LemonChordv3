@@ -31,7 +31,9 @@ async function jwtFetch(url, options = {}) {
   // Construct the full URL by combining the base URL and the endpoint URL.
   console.log("BASE_URL",BASE_URL)
   console.log("url", url)
+
   const fullUrl = `${BASE_URL}${url}`;
+  console.log("full url", fullUrl)
 
   // Call fetch with the full URL and the updated options hash.
   const res = await fetch(fullUrl, options);
