@@ -7,38 +7,37 @@ function getCookie(cookieName) {
   return null;
 }
 
-
-
-
+// Define the base URL for your API, you can set this in your environment variables
+const BASE_URL = process.env.REACT_APP_API || 'http://localhost:8000'; // Update this to your back-end URL when deployed
 
 async function jwtFetch(url, options = {}) {
   // Set options.method to 'GET' if there is no method.
   options.method = options.method || "GET";
-  // Set options.headers to an empty object if there is no headers.
+  
+  // Set options.headers to an empty object if there are no headers.
   options.headers = options.headers || {};
+  
   // Set the "Authorization" header to the value of "jwtToken" in localStorage.
-  // Remember to add 'Bearer ' to the front of the token.
   const jwtToken = localStorage.getItem("jwtToken");
   if (jwtToken) options.headers["Authorization"] = 'Bearer ' + jwtToken;
-  
-  // If the options.method is not 'GET', then set the "Content-Type" header to
-  // "application/json".
+
+  // If the options.method is not 'GET', then set the "Content-Type" header to "application/json".
   if (options.method.toUpperCase() !== "GET") {
     options.headers["Content-Type"] =
       options.headers["Content-Type"] || "application/json";
     options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
   }
 
-  // Call fetch with the url and the updated options hash.
-  const res = await fetch(url, options);
-  // debugger
+  // Construct the full URL by combining the base URL and the endpoint URL.
+  const fullUrl = `${BASE_URL}${url}`;
 
-  // If the response status code is 400 or above, then throw an error with the
-  // error being the response.
+  // Call fetch with the full URL and the updated options hash.
+  const res = await fetch(fullUrl, options);
+
+  // If the response status code is 400 or above, then throw an error with the response.
   if (res.status >= 400) throw res;
 
-  // If the response status code is under 400, then return the response to the
-  // next promise chain.
+  // If the response status code is under 400, then return the response to the next promise chain.
   return res;
 }
 
