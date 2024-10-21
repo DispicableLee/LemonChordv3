@@ -29,10 +29,12 @@ async function jwtFetch(url, options = {}) {
   }
 
   // Construct the full URL by combining the base URL and the endpoint URL.
+  console.log("BASE_URL",BASE_URL)
+  console.log("url", url)
   const fullUrl = `${BASE_URL}${url}`;
 
   // Call fetch with the full URL and the updated options hash.
-  const res = await fetch(BASE_URL, options);
+  const res = await fetch(fullUrl, options);
 
   // If the response status code is 400 or above, then throw an error with the response.
   if (res.status >= 400) throw res;
