@@ -31,7 +31,7 @@ function LoginForm () {
     setEmail("lee.robert053@gmail.com")
     setPassword("Asianman2453")
     dispatch(login({ email, password })); 
-  }
+  } 
 
   return (
     <>

@@ -43,15 +43,15 @@ export const setupIndexPlayfeed = () => async (dispatch) => {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
             dispatch(receiveErrors(resBody.errors));
-        }
-    }
-};
+        } 
+    } 
+}; 
 
 export const recieveCurrentPlayfeed = (playFeed) => ({
     type: RECIEVE_CURRENT_PLAYFEED,
     playFeed,
 });
-
+ 
 export const setupCurrentPlayfeed = (albumId) => async (dispatch) => {
     try {
         const res = await jwtFetch(`/api/albums/${albumId}`); // Directly use the endpoint
