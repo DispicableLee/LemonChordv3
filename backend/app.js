@@ -24,6 +24,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
 
+
 // CORS setup
 const corsOptions = {
   origin: [
@@ -37,7 +38,7 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// app.options('*', cors(corsOptions));
+app.options('*', cors(corsOptions));
 
 // CSRF Protection middleware
 app.use(csurf({
