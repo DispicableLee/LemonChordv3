@@ -5,7 +5,7 @@ const router = express.Router();
 
 const { isProduction } = require('../../config/keys');
 
-if (!isProduction) {
+// if (!isProduction) {
   // In development, allow developers to access the CSRF token to test the
   // server endpoints in Postman.
   router.get("/restore", (req, res) => {
@@ -14,6 +14,6 @@ if (!isProduction) {
       'CSRF-Token': csrfToken
     });
   });
-}
+// }
 
 module.exports = router;
