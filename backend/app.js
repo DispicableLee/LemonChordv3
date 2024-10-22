@@ -6,8 +6,8 @@ const csurf = require('csurf');
 const passport = require('passport');
 const path = require('path');
 const { isProduction } = require('./config/keys');
-
-// Import your routes
+ 
+// Import your routes 
 const csrfRouter = require('./routes/api/csrf');
 const albumsRouter = require('./routes/api/albums');
 const playlistsRouter = require('./routes/api/playlists');
@@ -45,6 +45,16 @@ app.use(csurf({
     httpOnly: true
   }
 }));
+
+app.use((req, res, next) => {
+  const token = req.csrfToken();
+  res.cookie('XSRF-TOKEN', token, {
+    secure: isProduction,
+    sameSite: isProduction ? 'Lax' : 'Strict',
+    httpOnly: false, // Allow frontend access to read the token
+  });
+  next();
+});
 
 // Routes setup
 app.use('/api/csrf', csrfRouter);
