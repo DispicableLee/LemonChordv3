@@ -37,6 +37,8 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.options('*', cors(corsOptions));
+
 // CSRF Protection middleware
 app.use(csurf({
   cookie: {
