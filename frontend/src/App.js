@@ -6,7 +6,7 @@ import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import AlbumIndex from './components/AlbumIndex/AlbumIndex';
 import AlbumShow from './components/AlbumShow/AlbumShow';
-import AudioFooter from './components/AudioFooter/AudioFooter';
+import AudioFooter from './components/AudioFooter/AudioFooter'; 
 import NavBar from './components/NavBar/NavBar';
 import SplashForm from './components/SplashForms/SplashForm';
 import MainPage from './components/MainPage/MainPage';

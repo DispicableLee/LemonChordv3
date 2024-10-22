@@ -32,7 +32,7 @@ const corsOptions = {
     'http://localhost:3000' // Development frontend
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'], // Ensure all HTTP methods are allowed
-  allowedHeaders: ['Content-Type', 'X-CSRF-Token', 'Authorization', 'CSRF-Token'], // Include headers used in your requests
+  allowedHeaders: ['Content-Type', 'XSRF-Token', 'Authorization', 'CSRF-Token'], // Include headers used in your requests
   credentials: true, // Allow cookies and credentials
 };
 
@@ -52,8 +52,8 @@ app.use(csurf({
 app.use((req, res, next) => {
   const token = req.csrfToken();
   res.cookie('XSRF-TOKEN', token, {
-    secure: isProduction,
-    sameSite: isProduction ? 'Lax' : 'Strict',
+    secure: isProduction, 
+    sameSite: isProduction ? 'Lax' : 'Strict', 
     httpOnly: false, // Allow frontend access to read the token
   });
   next();
