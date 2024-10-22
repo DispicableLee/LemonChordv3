@@ -31,7 +31,7 @@ const corsOptions = {
     'http://localhost:3000' // Development frontend
   ],
   methods: ['GET', 'HEAD', 'PUT', 'PATCH', 'POST', 'DELETE', 'OPTIONS'], // Ensure all HTTP methods are allowed
-  allowedHeaders: ['Content-Type', 'X-CSRF-Token', 'Authorization', 'csrf-token'], // Include headers used in your requests
+  // allowedHeaders: ['Content-Type', 'X-CSRF-Token', 'Authorization', 'csrf-token'], // Include headers used in your requests
   credentials: true, // Allow cookies and credentials
 };
 
