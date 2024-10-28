@@ -43,36 +43,6 @@ passport.use(new JwtStrategy(options, async (jwtPayload, done) => {
   }
 }));
 
-// exports.loginUser = async function(user) {
-//     await user.populate({
-//       path: 'playlists',
-//       select: '_id title'
-//     })
-//     await user.populate({
-//       path: 'tracks',
-//       select: '_id title'
-//     })
-
-//   const userInfo = {
-//     _id: user._id,
-//     username: user.username,
-//     email: user.email,
-//     tracks: user.tracks,
-//     albums: user.albums,
-//     playlists: user.playlists
-//   };
-//   const token = await jwt.sign(
-//     userInfo, // payload
-//     secretOrKey, // sign with secret key
-//     { expiresIn: 3600 } // tell the key to expire in one hour
-//   );
-//   return {
-//     user: userInfo,
-//     token
-//   };
-// };
-
-
 exports.loginUser = async function(user) {
   try {
     // Populate playlists and tracks fields for the user
@@ -91,6 +61,7 @@ exports.loginUser = async function(user) {
       secretOrKey,
       { expiresIn: 3600 }
     );
+    console.log("token", token)
 
     // Return user info and token
     return {
