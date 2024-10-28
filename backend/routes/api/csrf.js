@@ -10,6 +10,7 @@ const { isProduction } = require('../../config/keys');
   // server endpoints in Postman.
   router.get("/restore", (req, res) => {
     const csrfToken = req.csrfToken();
+    console.log("seesurf",csrfToken)
     res.status(200).json({
       'CSRF-Token': csrfToken
     });
