@@ -24,6 +24,7 @@ passport.use(new LocalStrategy({
   } else
     done(null, false);
 }));
+
 const options = {};
 options.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 options.secretOrKey = secretOrKey;
