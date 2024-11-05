@@ -12,12 +12,14 @@ export default function LeftBar() {
   const currentUser = useSelector(store=>store?.session?.user)
   // console.log(currentUserPlaylists)
 
-  const playlistList = currentUser?.playlists.map((playlist)=>{
+  const playlistList = currentUser?.playlists?.map((playlist)=>{
     return (
       <Link to={`/playlist-show/${playlist._id}`}
+        // onClick={()=>dispatch(fetchOnePlaylist(playlist._id))}
         className="playlist-list-item"
       >
         <div 
+          // onClick={()=>dispatch(fetchOnePlaylist(playlist._id))}
           key={playlist} 
           // className="playlist-list-item"
         >

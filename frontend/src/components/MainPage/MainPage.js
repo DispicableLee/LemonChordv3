@@ -11,6 +11,7 @@ import PlaylistShow from '../PlaylistShow/PlaylistShow';
 import { Switch, Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 function MainPage() {
+  // const loggedIn = useSelector(store=>!!store.session.user)
   return (
     <div id="main-page-main">
       <LeftBar/>
@@ -26,7 +27,7 @@ function MainPage() {
         </Switch>
       </div>
     </div>
-  );
+  )
 }
 
 export default MainPage;

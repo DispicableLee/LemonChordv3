@@ -20,7 +20,7 @@ export default function PlaylistShow(){
         dispatch(fetchTracks())
         // console.log(trackIdsToAdd)
     }, [dispatch])
-
+    console.log("shownPlaylist", shownPlaylist)
     useEffect(()=>{
         console.log(trackIdsToAdd)
     }, [trackIdsToAdd])

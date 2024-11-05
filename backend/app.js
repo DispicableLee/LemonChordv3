@@ -24,6 +24,8 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
+console.log("passport initialized")
 app.use(passport.initialize());
 
 
@@ -62,7 +64,7 @@ app.use(
     }
   })
 );
-
+console.log("csrf initialized")
 
 
 

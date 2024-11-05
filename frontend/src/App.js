@@ -16,6 +16,7 @@ import { recieveLightDark } from './store/session';
 import { getCurrentUser } from './store/session';
 import { fetchTracks } from './store/tracks';
 import "./App.css"
+import TracksIndex from './components/TracksIndex/TracksIndex';
 
 export default function App() {
   // ===================== loads a user in and initializes the app component =====================
