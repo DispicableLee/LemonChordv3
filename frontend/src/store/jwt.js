@@ -25,7 +25,7 @@ async function jwtFetch(url, options = {}) {
   if (options.method.toUpperCase() !== "GET") {
     options.headers["Content-Type"] =
       options.headers["Content-Type"] || "application/json";
-    options.headers["CSRF-Token"] = getCookie("CSRF-Token");
+    options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
   }
 
   // Construct the full URL by combining the base URL and the endpoint URL.

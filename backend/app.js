@@ -51,7 +51,7 @@ app.use(csurf({
 
 app.use((req, res, next) => {
   const csrfToken = req.csrfToken();
-  res.cookie('CSRF-Token', csrfToken, {
+  res.cookie('CSRF-TOKEN', csrfToken, {
     secure: isProduction, 
     sameSite: isProduction ? 'Lax' : 'Strict', 
     httpOnly: false, // Allow frontend access to read the token
