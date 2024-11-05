@@ -23,7 +23,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(passport.initialize());
-
+console.log("passport initialized")
 
 // CORS setup
 const corsOptions = {
@@ -50,8 +50,8 @@ app.use(csurf({
 }));
 
 app.use((req, res, next) => {
-  const token = req.csrfToken();
-  res.cookie('XSRF-TOKEN', token, {
+  const csrfToken = req.csrfToken();
+  res.cookie('CSRF-Token', csrfToken, {
     secure: isProduction, 
     sameSite: isProduction ? 'Lax' : 'Strict', 
     httpOnly: false, // Allow frontend access to read the token
