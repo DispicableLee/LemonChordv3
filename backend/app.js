@@ -68,6 +68,7 @@ app.use('/api/users', usersRouter);
 
 // Serve the frontend's build files in production
 // ** Remove this block since you're not serving the frontend from the backend **
+app.use(express.static(path.resolve("../frontend/build")));
 if (isProduction) {
   // Serve the frontend's index.html file at the root route
   app.get('/', (req, res) => {
@@ -78,7 +79,6 @@ if (isProduction) {
   });
 
   // Serve the static assets in the frontend's build folder
-  app.use(express.static(path.resolve("../frontend/build")));
 
   // Serve the frontend's index.html file at all other routes NOT starting with /api
   app.get(/^(?!\/?api).*/, (req, res) => {
